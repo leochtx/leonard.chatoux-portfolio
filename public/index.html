@@ -1070,6 +1070,16 @@
     const bioRect = bioBlock.getBoundingClientRect();
     const pastBio = bioRect.bottom < centerY;
 
+    /* garde-fou : ne jamais afficher la balle tant que la section Parcours/Diplômes (PSC1 inclus) n'est pas passée */
+    const credSection = document.getElementById('credSection');
+    if(credSection){
+      const credBottom = credSection.getBoundingClientRect().bottom;
+      if(credBottom > centerY - 40){
+        if(journeyWasActive){ journeyBall.classList.remove('active'); journeyPaddle.classList.remove('active'); journeyWasActive=false; }
+        return;
+      }
+    }
+
     const lastRect = journeySteps[journeySteps.length-1].getBoundingClientRect();
     const exitDist = window.innerHeight*0.35;
     let pOut = (centerY - lastRect.bottom) / exitDist;
