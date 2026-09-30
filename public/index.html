@@ -85,8 +85,8 @@
   .hero-frame:hover{border-color:var(--signal);box-shadow:0 44px 90px -28px rgba(210,120,13,.4),0 40px 80px -30px rgba(0,0,0,.6);}
   .hero-frame img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.16,1,.3,1),filter .45s ease;}
   .hero-frame:hover img{transform:scale(1.06);filter:saturate(1.08);}
-  .hero-v2{padding-bottom:32px;}
-  .hero-intro-gate{padding-top:0;}
+  .hero-v2{padding-bottom:48px;}
+  .hero-intro-gate{padding-top:40px;}
   @media (prefers-reduced-motion:reduce){header.site,.hero-bio .eyebrow,.hero-bio h1,.hero-sub,.hero-cv,.hero-visual{animation:none !important;opacity:1 !important;transform:none !important;}.reveal{transition:none;opacity:1;transform:none;}}
 
   section{padding-block:76px;}
@@ -355,7 +355,6 @@
   .back-to-top:hover svg{transform:translateY(-3px);}
 
   .folder-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;padding-bottom:100px;}
-  #photosFolderGrid{grid-template-columns:repeat(2,1fr);max-width:760px;}
   .folder-card{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:4/3;cursor:pointer;border:1.5px solid var(--hairline);transition:border-color .35s ease;}
   .folder-card:hover{border-color:var(--signal);}
   .folder-card img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.16,1,.3,1),filter .6s ease;}
@@ -650,7 +649,7 @@
             <ul><li>Encadrement &amp; coaching, création de contenus digitaux</li><li>Aide à l'organisation des 24H de Lisieux</li></ul>
           </article>
         </div>
-        <button class="back-to-top" type="button" data-nav="home" aria-label="Retour à l'accueil">
+        <button class="back-to-top" id="backToTopBtn" type="button" data-nav="home" aria-label="Retour à l'accueil">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
           <span>Retour à l'accueil</span>
         </button>
@@ -753,31 +752,11 @@
   }
 
   /* tri chronologique strict : plus récent en haut */
-  const ALBUM_GROUPS = {
-    'sport': {
-      label: 'Sport',
-      cover: 'img/photos/tennis-de-table/cover.jpg',
-      sources: [
-        {key:'tennis-de-table', mood:'tt', files: range(103)},
-        {key:'padel', mood:'padel', files: range(21)},
-      ],
-    },
-    'rue': {
-      label: 'Photos de rue',
-      cover: 'img/photos/braderie-lille-2026/cover.jpg',
-      sources: [
-        {key:'braderie-lille-2026', mood:'braderie', files: range(98)},
-      ],
-    },
+  const ALBUMS = {
+    'tennis-de-table': {label:'Tennis de Table', mood:'tt', cover:'cover.jpg', files: range(103)},
+    'braderie-lille-2026': {label:'Braderie de Lille 2026', mood:'braderie', cover:'cover.jpg', files: range(98)},
+    'padel': {label:'Padel', mood:'padel', cover:'cover.jpg', files: range(21)},
   };
-  const ALBUMS = {};
-  Object.entries(ALBUM_GROUPS).forEach(([key,g])=>{
-    ALBUMS[key] = {
-      label: g.label,
-      cover: g.cover,
-      items: g.sources.flatMap(s => s.files.map(fn => ({src:`img/photos/${s.key}/${fn}`, mood:s.mood}))),
-    };
-  });
   const DOSSIERS = {
     'alcl-grand-quevilly': {label:'ALCL Grand Quevilly TT', cover:'cover.jpg', files: range(61)},
     'padelshot-barentin': {label:'Padelshot Barentin', cover:'cover.jpg', files: range(20)},
@@ -794,9 +773,9 @@
     document.getElementById('photos-open').style.display='block';
     document.getElementById('photosOpenLabel').textContent = a.label;
     const m = document.getElementById('photosMasonry');
-    m.innerHTML = a.items.map((it,i)=>`
-      <div class="g-item" data-mood="${it.mood}" data-index="${i}" style="animation-delay:${(i%8)*0.05}s">
-        <img loading="lazy" src="${it.src}" alt="${a.label} ${i+1}">
+    m.innerHTML = a.files.map((fn,i)=>`
+      <div class="g-item" data-mood="${a.mood}" data-index="${i}" style="animation-delay:${(i%8)*0.05}s">
+        <img loading="lazy" src="img/photos/${key}/${fn}" alt="${a.label} ${i+1}">
       </div>`).join('');
     m.querySelectorAll('.g-item').forEach(el=> el.addEventListener('click', ()=> openLightbox('photos', key, Number(el.dataset.index))));
     wireImages(m);
@@ -867,7 +846,7 @@
   Object.entries(ALBUMS).forEach(([key,a])=>{
     const div = document.createElement('div');
     div.className = 'folder-card';
-    div.innerHTML = `<img src="${a.cover}" alt="${a.label}" loading="lazy"><div class="folder-reveal"><h3>${a.label}</h3></div>`;
+    div.innerHTML = `<img src="img/photos/${key}/${a.cover}" alt="${a.label}" loading="lazy"><div class="folder-reveal"><h3>${a.label}</h3></div>`;
     div.addEventListener('click', ()=> goTo('photos', {open:key}));
     photosFolderGrid.appendChild(div);
   });
@@ -890,7 +869,7 @@
   const lbCount = document.getElementById('lbCount');
   let lbCtx = null;
   function lbData(){
-    if(lbCtx.kind==='photos'){ const a=ALBUMS[lbCtx.key]; return {label:a.label, files:a.items.map(it=>it.src), base:''}; }
+    if(lbCtx.kind==='photos'){ const a=ALBUMS[lbCtx.key]; return {label:a.label, files:a.files, base:`img/photos/${lbCtx.key}/`}; }
     const d=DOSSIERS[lbCtx.key]; return {label:d.label, files:d.files, base:`img/visuels/${lbCtx.key}/`};
   }
   function openLightbox(kind, key, index){
@@ -1081,8 +1060,11 @@
     }
 
     const lastRect = journeySteps[journeySteps.length-1].getBoundingClientRect();
-    const exitDist = window.innerHeight*0.35;
-    let pOut = (centerY - lastRect.bottom) / exitDist;
+    const backBtn = document.getElementById('backToTopBtn');
+    const exitRef = backBtn ? backBtn.getBoundingClientRect().top : lastRect.bottom;
+    const exitBuffer = 100;
+    const exitDist = window.innerHeight*0.22;
+    let pOut = (centerY + exitBuffer - exitRef) / exitDist;
     pOut = Math.max(0, Math.min(1, pOut));
 
     if(pOut>=1){
