@@ -349,11 +349,10 @@
   .breadcrumb .back-arrow,.breadcrumb .back-arrow:hover{color:var(--signal-bright);}
   .breadcrumb .back-arrow:hover{color:var(--bone);}
 
-  .scroll-top-btn{position:fixed;right:24px;bottom:24px;z-index:90;display:flex;align-items:center;justify-content:center;width:48px;height:48px;background:rgba(20,19,21,.85);backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);border:1.5px solid var(--hairline);border-radius:999px;color:var(--bone-dim);cursor:pointer;opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .3s ease,transform .3s ease,border-color .25s ease,color .25s ease;}
-  .scroll-top-btn.show{opacity:1;transform:none;pointer-events:auto;}
-  .scroll-top-btn:hover{border-color:var(--signal);color:var(--bone);transform:translateY(-3px);}
-  .scroll-top-btn svg{width:18px;height:18px;flex:none;}
-  @media (max-width:600px){.scroll-top-btn{right:16px;bottom:16px;width:42px;height:42px;}}
+  .page-nav-arrow{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:90;display:flex;align-items:center;justify-content:center;width:48px;height:48px;background:rgba(20,19,21,.6);backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);border:1.5px solid var(--hairline);border-radius:999px;color:var(--bone-dim);cursor:pointer;transition:border-color .25s ease,color .25s ease,transform .25s ease,background .25s ease;}
+  .page-nav-arrow:hover{border-color:var(--signal);color:var(--bone);background:rgba(20,19,21,.8);transform:translateX(-50%) translateY(-3px);}
+  .page-nav-arrow svg{width:18px;height:18px;flex:none;}
+  @media (max-width:600px){.page-nav-arrow{width:42px;height:42px;bottom:16px;}}
 
   .folder-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;padding-bottom:100px;}
   .folder-card{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:4/3;cursor:pointer;border:1.5px solid var(--hairline);transition:border-color .35s ease;}
@@ -727,7 +726,7 @@
   <footer class="site wrap"><div class="footer-row"><div class="footer-brand"><img src="img/logo-bone.png" alt="Logo Léonard Chatoux"><p>© 2026 Léonard Chatoux</p></div></div></footer>
 </main>
 
-<button class="scroll-top-btn" id="scrollTopBtn" type="button" aria-label="Remonter en haut de la page">
+<button class="page-nav-arrow" id="pageTopBtn" type="button" aria-label="Remonter en haut de la page">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
 </button>
 
@@ -1222,11 +1221,7 @@
   }, {threshold:.15});
   document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
 
-  const scrollTopBtn = document.getElementById('scrollTopBtn');
-  function updateScrollTopBtn(){ scrollTopBtn.classList.toggle('show', window.scrollY > 400); }
-  window.addEventListener('scroll', updateScrollTopBtn, {passive:true});
-  scrollTopBtn.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
-  updateScrollTopBtn();
+  document.getElementById('pageTopBtn').addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
 
   const burgerBtn = document.getElementById('burgerBtn');
   const burgerIcon = burgerBtn.querySelector('.burger-icon');
