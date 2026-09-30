@@ -1,0 +1,1173 @@
+<title>Léonard Chatoux</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --void:#0f0f11; --void-2:#141315; --charcoal:#19171a; --charcoal-2:#221f21;
+    --hairline:#2c2830; --bone:#f3ede3; --bone-dim:#cdc6ba; --ash:#948b80;
+    --signal:#d2780d; --signal-bright:#e88a1c; --signal-dim:#8a4f0f; --signal-glow:rgba(210,120,13,.35); --signal-wash:rgba(210,120,13,.06);
+    --display:'Anton',Impact,ui-sans-serif,sans-serif; --body:'Archivo',ui-sans-serif,system-ui,sans-serif; --mono:var(--body);
+    --r-lg:28px; --r-md:20px; --r-sm:14px;
+    color-scheme:dark;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  html.custom-cursor, html.custom-cursor *{cursor:none;}
+  body{margin:0;background:var(--void);color:var(--bone);font-family:var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  button{font-family:inherit;cursor:pointer;}
+  h1,h2{font-family:var(--display);font-weight:400;margin:0;text-wrap:balance;text-transform:uppercase;letter-spacing:.01em;}
+  h3{font-family:var(--body);font-weight:700;margin:0;text-wrap:balance;}
+  p{margin:0;}
+  ::selection{background:var(--signal);color:var(--void);}
+  :focus-visible{outline:2px solid var(--signal);outline-offset:3px;}
+  .eyebrow{font-family:var(--body);font-weight:600;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--signal);}
+  .wrap{max-width:1240px;margin:0 auto;padding-inline:clamp(20px,5vw,64px);}
+
+  .grain{position:fixed;inset:0;pointer-events:none;z-index:300;opacity:.14;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch' result='noise'/%3E%3CfeColorMatrix in='noise' type='matrix' values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 2.4 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;}
+
+  img{background:var(--charcoal);opacity:0;transition:opacity .5s ease;}
+  img.loaded{opacity:1;}
+  img.broken{opacity:1;background:var(--charcoal) linear-gradient(135deg,var(--charcoal) 25%,var(--charcoal-2) 25%,var(--charcoal-2) 50%,var(--charcoal) 50%,var(--charcoal) 75%,var(--charcoal-2) 75%);background-size:14px 14px;border:1px dashed var(--hairline);min-height:80px;color:var(--ash);font-size:.68rem;display:flex;align-items:center;justify-content:center;text-align:center;padding:8px;}
+
+  header.site{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(15,15,17,.72);backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);border-bottom:1px solid var(--hairline);transform:translateY(-100%);animation:headerDrop .8s cubic-bezier(.16,1,.3,1) .1s forwards;}
+  @keyframes headerDrop{to{transform:translateY(0);}}
+  .header-inner{display:flex;align-items:center;justify-content:space-between;padding-block:12px;}
+  .logo{display:flex;align-items:center;gap:12px;background:none;border:none;}
+  .logo img{width:34px;height:34px;object-fit:contain;flex:none;opacity:1;background:none;}
+  .logo-text{font-family:var(--display);font-weight:400;text-transform:uppercase;letter-spacing:.02em;font-size:1.5rem;}
+  nav.primary{display:flex;align-items:center;gap:4px;}
+  nav.primary button{background:none;border:none;color:var(--bone-dim);font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:.82rem;letter-spacing:.04em;padding:10px 16px;border-radius:999px;position:relative;transition:color .25s ease,letter-spacing .3s ease,transform .25s ease;white-space:nowrap;}
+  nav.primary button::after{content:"";position:absolute;left:16px;right:16px;bottom:6px;height:2px;background:var(--signal);transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.16,1,.3,1);}
+  nav.primary button:hover{color:var(--bone);letter-spacing:.08em;transform:translateY(-1px);}
+  nav.primary button:hover::after{transform:scaleX(1);}
+  nav.primary button.active{color:var(--bone);}
+  nav.primary button.active::after{transform:scaleX(1);}
+  .nav-home{padding:8px 14px;display:flex;align-items:center;}
+  .nav-home-icon{width:22px;height:22px;object-fit:contain;flex:none;opacity:1;background:none;transition:transform .25s cubic-bezier(.16,1,.3,1);}
+  .nav-home:hover .nav-home-icon{transform:scale(1.15);}
+  .header-cta{background:var(--signal);color:var(--void);font-size:.82rem;font-weight:600;padding:11px 20px;border-radius:999px;border:none;transition:background .2s ease,transform .2s ease,box-shadow .2s ease;white-space:nowrap;}
+  .header-cta:hover{background:var(--signal-bright);transform:translateY(-1px);box-shadow:0 8px 24px -8px var(--signal-glow);}
+  .burger{display:none;background:none;border:1px solid var(--hairline);border-radius:8px;width:40px;height:40px;color:var(--bone);font-size:1.1rem;}
+
+  .mobile-menu{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:rgba(15,15,17,.97);backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);border-bottom:1px solid var(--hairline);max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.16,1,.3,1);}
+  .mobile-menu.open{max-height:360px;}
+  .mobile-menu button{background:none;border:none;border-bottom:1px solid var(--hairline);color:var(--bone-dim);font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:1.05rem;letter-spacing:.03em;padding:16px clamp(20px,5vw,64px);text-align:left;transition:color .2s ease,background .2s ease;}
+  .mobile-menu button:last-child{border-bottom:none;}
+  .mobile-menu button:hover,.mobile-menu button.active{color:var(--bone);background:rgba(210,120,13,.1);}
+
+  .view{display:none;}
+  .view.active{display:block;animation:viewIn .5s ease both;}
+  @keyframes viewIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+  .reveal{opacity:0;transform:translateX(-38px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1);}
+  .reveal.in{opacity:1;transform:none;}
+
+  .hero-v2{padding-top:calc(96px + 4vw);padding-bottom:64px;display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:center;}
+  .hero-bio .eyebrow{opacity:0;animation:fadeUp .7s ease .5s forwards;}
+  .hero-bio h1{font-size:clamp(1.9rem,3.6vw,2.9rem);line-height:1.05;margin-top:16px;opacity:0;animation:fadeUp .8s cubic-bezier(.16,1,.3,1) .65s forwards;}
+  .hero-bio h1 span{color:var(--signal);}
+  .hero-sub{font-size:1.02rem;color:var(--bone-dim);margin-top:22px;line-height:1.75;opacity:0;animation:fadeUp .8s ease .8s forwards;}
+  .hero-cv{margin-top:28px;opacity:0;animation:fadeUp .8s ease .95s forwards;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
+  .hero-visual{position:relative;opacity:0;animation:fadeScale 1s cubic-bezier(.16,1,.3,1) .35s forwards;}
+  @keyframes fadeScale{from{opacity:0;transform:scale(1.06);}to{opacity:1;transform:scale(1);}}
+  .hero-frame{aspect-ratio:4/5;border-radius:var(--r-lg) var(--r-lg) 50px var(--r-lg);overflow:hidden;box-shadow:0 40px 80px -30px rgba(0,0,0,.6);border:1.5px solid transparent;transition:box-shadow .45s ease,border-color .45s ease;}
+  .hero-frame:hover{border-color:var(--signal);box-shadow:0 44px 90px -28px rgba(210,120,13,.4),0 40px 80px -30px rgba(0,0,0,.6);}
+  .hero-frame img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.16,1,.3,1),filter .45s ease;}
+  .hero-frame:hover img{transform:scale(1.06);filter:saturate(1.08);}
+  @media (prefers-reduced-motion:reduce){header.site,.hero-bio .eyebrow,.hero-bio h1,.hero-sub,.hero-cv,.hero-visual{animation:none !important;opacity:1 !important;transform:none !important;}.reveal{transition:none;opacity:1;transform:none;}}
+
+  section{padding-block:76px;}
+  .section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:36px;flex-wrap:wrap;}
+  .section-head h2{font-size:clamp(1.5rem,2.4vw,2rem);}
+  .section-num{font-family:var(--body);font-weight:600;color:var(--ash);font-size:.8rem;letter-spacing:.04em;}
+
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:999px;font-size:.9rem;font-weight:600;border:1px solid transparent;transition:transform .2s ease,box-shadow .2s ease,background .2s ease,border-color .2s ease;}
+  .btn-solid{background:var(--signal);color:var(--void);}
+  .btn-solid:hover{background:var(--signal-bright);transform:translateY(-2px);box-shadow:0 10px 28px -10px var(--signal-glow);}
+  .btn-ghost{border-color:var(--hairline);color:var(--bone);}
+  .btn-ghost:hover{border-color:var(--signal);color:var(--signal-bright);}
+
+  .vm-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  .vm-card{position:relative;overflow:hidden;
+    background:rgba(255,255,255,.03);
+    backdrop-filter:blur(6px) saturate(130%);-webkit-backdrop-filter:blur(6px) saturate(130%);
+    border:1.5px solid var(--hairline);border-radius:var(--r-md);padding:30px 28px;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
+    transition:transform .3s cubic-bezier(.16,1,.3,1),border-color .35s ease,box-shadow .35s ease,backdrop-filter .35s ease;}
+  .vm-card::before{content:"";position:absolute;inset:0;background:linear-gradient(155deg,rgba(255,255,255,.07),transparent 55%);pointer-events:none;}
+  .vm-card:hover{transform:translateY(-6px);border-color:var(--signal);
+    backdrop-filter:blur(22px) saturate(170%);-webkit-backdrop-filter:blur(22px) saturate(170%);
+    box-shadow:0 30px 60px -26px rgba(210,120,13,.5), inset 0 1px 0 rgba(255,255,255,.1);}
+  .vm-label{position:relative;display:block;font-family:var(--display);font-weight:400;font-size:2rem;line-height:1;color:var(--signal);text-transform:uppercase;letter-spacing:.02em;margin-bottom:16px;text-shadow:0 0 26px rgba(210,120,13,.4);}
+  .vm-card p.vm-text{position:relative;font-size:1rem;line-height:1.6;color:var(--bone-dim);}
+  .vm-card p.vm-text b{color:var(--bone);font-weight:700;}
+
+  /* Passerelles & couvertures : image pure au repos, flou + titre au survol */
+  .gate-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .gate-card{position:relative;cursor:pointer;border:1.5px solid var(--hairline);border-radius:var(--r-md);overflow:hidden;aspect-ratio:4/5;background:none;padding:0;transition:border-color .35s ease;}
+  .gate-card:hover{border-color:var(--signal);}
+  .gate-card img{width:100%;height:100%;object-fit:cover;transition:transform .55s cubic-bezier(.16,1,.3,1),filter .55s ease;}
+  .gate-card:hover img{transform:scale(1.07);filter:blur(3px) brightness(.5);}
+  .gate-reveal{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transform:scale(.92);transition:opacity .4s ease,transform .4s cubic-bezier(.16,1,.3,1);pointer-events:none;}
+  .gate-card:hover .gate-reveal{opacity:1;transform:scale(1);}
+  .gate-reveal h3{font-family:var(--display);font-weight:400;text-transform:uppercase;letter-spacing:.03em;font-size:1.5rem;color:var(--bone);}
+
+  .skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  .skill-card{position:relative;overflow:hidden;
+    background:rgba(255,255,255,.03);
+    backdrop-filter:blur(6px) saturate(130%);-webkit-backdrop-filter:blur(6px) saturate(130%);
+    border:1.5px solid var(--hairline);border-radius:var(--r-md);padding:30px 24px;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
+    transition:transform .3s cubic-bezier(.16,1,.3,1),border-color .35s ease,box-shadow .35s ease,backdrop-filter .35s ease;}
+  .skill-card::before{content:"";position:absolute;inset:0;background:linear-gradient(155deg,rgba(255,255,255,.07),transparent 55%);pointer-events:none;}
+  .skill-card:hover{transform:translateY(-6px);border-color:var(--signal);
+    backdrop-filter:blur(22px) saturate(170%);-webkit-backdrop-filter:blur(22px) saturate(170%);
+    box-shadow:0 30px 60px -26px rgba(210,120,13,.5), inset 0 1px 0 rgba(255,255,255,.1);}
+  .skill-num{font-family:var(--display);font-weight:400;font-size:2.6rem;line-height:1;color:var(--signal);margin-bottom:16px;text-shadow:0 0 26px rgba(210,120,13,.45);}
+  .skill-card h3{font-size:1.02rem;margin-bottom:8px;position:relative;}
+  .skill-card p{color:var(--bone-dim);font-size:.85rem;line-height:1.6;position:relative;}
+
+  .contact-band{background:linear-gradient(180deg,var(--void) 0%,var(--void) 70%,var(--signal-dim) 90%,var(--signal) 100%);scroll-margin-top:90px;}
+  .contact-band-inner{padding-block:70px;display:grid;grid-template-columns:300px 1fr;gap:56px;align-items:center;}
+  .contact-photo{width:300px;aspect-ratio:3/4;border-radius:var(--r-md);overflow:hidden;border:2px solid var(--signal);flex:none;box-shadow:0 30px 64px -26px rgba(210,120,13,.5);transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s ease;}
+  .contact-photo:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 40px 76px -22px rgba(210,120,13,.65);}
+  .contact-photo img{width:100%;height:100%;object-fit:cover;}
+  .contact-band h2{font-size:clamp(1.5rem,2.4vw,2rem);margin-top:8px;}
+  .contact-name{font-family:var(--display);font-weight:400;text-transform:uppercase;letter-spacing:.02em;font-size:clamp(1.5rem,2.4vw,2rem);color:var(--signal);margin-top:14px;}
+  .contact-band p.sub{color:var(--bone-dim);margin-top:10px;max-width:44ch;font-size:.94rem;}
+  .contact-grid-info{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:26px;max-width:560px;}
+  .contact-chip{display:flex;flex-direction:column;gap:5px;background:rgba(255,255,255,.03);border:1.5px solid var(--hairline);border-radius:var(--r-sm);padding:16px 18px;transition:border-color .3s ease,transform .3s ease,background .3s ease;}
+  .contact-chip:hover{border-color:var(--signal);transform:translateY(-4px);background:rgba(255,255,255,.05);}
+  .contact-chip .chip-label{font-family:var(--body);font-weight:600;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ash);}
+  .contact-chip .chip-value{font-family:var(--display);font-weight:400;font-size:1.15rem;color:var(--bone);word-break:break-word;line-height:1.2;transition:color .3s ease;}
+  .contact-chip:hover .chip-value{color:var(--signal-bright);}
+  .contact-social{display:flex;gap:20px;margin-top:22px;}
+  .contact-social a{position:relative;padding-bottom:2px;font-family:var(--body);font-weight:600;font-size:.84rem;color:var(--ash);transition:color .2s ease;}
+  .contact-social a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;background:var(--signal);transform:scaleX(0);transform-origin:left;transition:transform .3s cubic-bezier(.16,1,.3,1);}
+  .contact-social a:hover{color:var(--signal-bright);}
+  .contact-social a:hover::after{transform:scaleX(1);}
+
+  footer.site{padding-block:28px;border-top:1px solid var(--hairline);}
+  .footer-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+  .footer-row p{font-family:var(--body);font-size:.76rem;color:var(--ash);}
+  .footer-brand{display:flex;align-items:center;gap:10px;}
+  .footer-brand img{width:24px;height:24px;object-fit:contain;flex:none;opacity:1;background:none;}
+  .footer-brand p{margin:0;}
+
+  .about-title{padding-top:calc(96px + 3vw);padding-bottom:0;}
+  .about-hero h1{font-size:clamp(1.9rem,3.6vw,2.7rem);margin-top:14px;}
+  .about-hero p.lead{color:var(--bone-dim);margin-top:18px;line-height:1.75;font-size:1.02rem;max-width:58ch;}
+  .stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:32px;border-top:1px solid var(--hairline);padding-top:26px;}
+  .stat b{display:block;font-family:var(--display);font-weight:400;font-size:1.3rem;color:var(--signal);line-height:1.2;text-transform:uppercase;}
+  .stat span{font-family:var(--body);font-weight:600;font-size:.64rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ash);display:block;margin-top:6px;line-height:1.4;}
+
+  /* Curseur balle de ping-pong, ressort fait main */
+  #cursorBall{position:fixed;top:0;left:0;width:22px;height:22px;border-radius:50%;
+    background:radial-gradient(circle at 34% 30%,#ffffff,#f1efe9 55%,#d8d2c4 100%);
+    border:1px solid rgba(210,120,13,.4);box-shadow:0 6px 14px -4px rgba(0,0,0,.5);
+    pointer-events:none;z-index:500;transform:translate(-50%,-50%);will-change:transform;
+    opacity:0;transition:opacity .35s ease;}
+  html.custom-cursor #cursorBall.show{opacity:1;}
+
+  /* Balle-voyage : descend à travers la bio, devient la roue des Expériences */
+  .journey-layout{display:grid;grid-template-columns:170px 1fr;gap:48px;position:relative;}
+  .journey-ball-col{position:relative;}
+  #journeyBall{position:fixed;top:0;left:0;border-radius:50%;pointer-events:none;z-index:60;
+    width:46px;height:46px;transform:translate(-50%,-50%);opacity:0;
+    box-shadow:0 20px 46px -16px rgba(0,0,0,.6);}
+  #journeyBall.active{opacity:1;}
+  .journey-surface{position:absolute;inset:0;border-radius:50%;overflow:hidden;
+    background:radial-gradient(circle at 34% 30%,#ffffff,#f1efe9 55%,#d8d2c4 100%);
+    border:1px solid rgba(210,120,13,.35);transition:opacity .4s ease;}
+  .journey-photos{position:absolute;inset:0;border-radius:50%;overflow:hidden;border:2px solid var(--hairline);
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.04);opacity:0;transition:opacity .4s ease;}
+  .journey-photos.bounce{animation:wheelBounce .5s cubic-bezier(.34,1.56,.64,1);}
+  @keyframes wheelBounce{0%{filter:brightness(1);}40%{filter:brightness(1.3);}100%{filter:brightness(1);}}
+  .journey-photo.journey-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .55s ease;background:none;}
+  .journey-photo.journey-photo.active{opacity:1;}
+  #journeyBall.bounce{animation:journeyBallBounce .68s cubic-bezier(.3,.1,.3,1);}
+  @keyframes journeyBallBounce{
+    0%{transform:translate(-50%,-50%) translateY(0) scale(1,1); filter:blur(0px);}
+    20%{transform:translate(-50%,-50%) translateY(28px) scale(1.01,.99); filter:blur(2.5px);}
+    38%{transform:translate(-50%,-50%) translateY(96px) scale(1.14,.82); filter:blur(4px);}
+    52%{transform:translate(-50%,-50%) translateY(70px) scale(.86,1.16); filter:blur(1.5px);}
+    70%{transform:translate(-50%,-50%) translateY(-18px) scale(1.03,.97); filter:blur(1.5px);}
+    86%{transform:translate(-50%,-50%) translateY(4px) scale(.99,1.01); filter:blur(.5px);}
+    100%{transform:translate(-50%,-50%) translateY(0) scale(1,1); filter:blur(0px);}
+  }
+  #journeyPaddle{position:fixed;top:0;left:0;z-index:58;pointer-events:none;opacity:0;}
+  #journeyPaddle.active{opacity:1;}
+  #journeyPaddle img{width:240px;height:auto;display:block;transform:translate(-58%,-15%) rotate(0deg);filter:drop-shadow(0 14px 20px rgba(0,0,0,.5));}
+  #journeyPaddle.hit img{animation:journeyPaddleHit .68s ease-out;}
+  @keyframes journeyPaddleHit{
+    0%{transform:translate(-58%,-15%) rotate(0deg);}
+    36%{transform:translate(-58%,-15%) rotate(0deg);}
+    42%{transform:translate(-58%,-15%) rotate(-5deg);}
+    58%{transform:translate(-58%,-15%) rotate(3deg);}
+    100%{transform:translate(-58%,-15%) rotate(0deg);}
+  }
+  @media (prefers-reduced-motion:reduce){#journeyBall.bounce,#journeyPaddle.hit{animation:none;}}
+  @media (prefers-reduced-motion:reduce){#journeyBall,.journey-photos,.journey-photo{transition:none;}}
+
+  .bio-block{padding-top:6px;}
+  .bio-kicker{font-family:var(--display);font-weight:400;font-size:1.35rem;color:var(--bone);line-height:1.3;margin-bottom:22px;}
+  .bio-block p{color:var(--bone-dim);font-size:1.03rem;line-height:1.8;max-width:62ch;}
+  .bio-block p+p{margin-top:20px;}
+  .bio-block b{color:var(--bone);font-weight:700;}
+  .bio-block .section-head{margin-top:56px;}
+
+  .exp-steps-block{display:flex;flex-direction:column;}
+  .exp-step{min-height:56vh;display:flex;flex-direction:column;justify-content:center;padding-block:20px;
+    opacity:.3;transform:translateX(10px);transition:opacity .5s ease,transform .5s ease;}
+  .exp-step:last-child{min-height:20vh;}
+  .exp-step.active{opacity:1;transform:translateX(0);}
+  .exp-step .exp-period{font-family:var(--body);font-weight:600;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ash);}
+  .exp-step h3{font-size:1.3rem;margin-top:8px;font-family:var(--display);font-weight:400;text-transform:uppercase;letter-spacing:.02em;}
+  .t-org{font-family:var(--body);font-weight:600;font-size:.78rem;color:var(--signal-bright);letter-spacing:.02em;margin-top:6px;display:block;}
+  .exp-step ul{margin:16px 0 0;padding-left:18px;color:var(--bone-dim);font-size:.92rem;line-height:1.75;max-width:56ch;}
+  .exp-step li{margin-bottom:4px;}
+  .t-photo{margin-top:16px;border-radius:var(--r-sm);overflow:hidden;max-width:280px;border:1px solid var(--hairline);}
+  .t-photo img{width:100%;display:block;}
+  .t-photo-cap{font-family:var(--body);font-size:.72rem;color:var(--ash);margin-top:6px;}
+  @media (max-width:860px){
+    .journey-layout{grid-template-columns:1fr;}
+    .journey-ball-col{display:none;}
+    #journeyBall{display:none;}
+    #journeyPaddle{display:none;}
+    .exp-step{min-height:0;opacity:1;transform:none;padding-block:14px;}
+    .exp-step:last-child{min-height:0;}
+    #cursorBall{display:none;}
+  }
+
+  /* Parcours, diplômes & certifications : ma photo qui "court" le long d'un tracé, étapes en alternance */
+  .formation-track{position:relative;padding-block:10px;}
+  .formation-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;}
+  .path-ghost{fill:none;stroke:var(--hairline);stroke-width:2;stroke-dasharray:2 9;stroke-linecap:round;}
+  .path-solid{fill:none;stroke:var(--signal);stroke-width:2.5;stroke-linecap:round;filter:drop-shadow(0 0 5px var(--signal-glow));}
+  .runner{position:absolute;top:0;left:0;width:52px;height:52px;border-radius:50%;overflow:hidden;border:3px solid var(--signal);box-shadow:0 12px 26px -6px var(--signal-glow);z-index:5;background:var(--charcoal);offset-rotate:0deg;animation:runnerBob .5s ease-in-out infinite alternate;opacity:0;transition:opacity .5s ease;}
+  .runner.show{opacity:1;}
+  .runner img{width:100%;height:100%;object-fit:cover;}
+  @keyframes runnerBob{from{transform:translateY(0) rotate(-4deg);}to{transform:translateY(-7px) rotate(4deg);}}
+  @media (prefers-reduced-motion:reduce){.runner{animation:none;}}
+  .formation-milestones{position:relative;display:flex;flex-direction:column;gap:56px;padding-block:26px;}
+  .formation-item.milestone{position:relative;width:calc(50% - 34px);background:var(--charcoal);border:1px solid var(--hairline);border-radius:var(--r-md);padding:20px 22px;transition:border-color .25s ease;}
+  .formation-item.milestone[data-side="left"]{margin-right:auto;}
+  .formation-item.milestone[data-side="right"]{margin-left:auto;}
+  .formation-item.milestone.has-img{cursor:pointer;}
+  .formation-item.milestone.has-img:hover{border-color:var(--signal-dim);}
+  .milestone-dot{position:absolute;top:50%;width:10px;height:10px;border-radius:50%;background:var(--signal);transform:translateY(-50%);box-shadow:0 0 0 4px var(--void);}
+  .formation-item.milestone[data-side="left"] .milestone-dot{right:-30px;}
+  .formation-item.milestone[data-side="right"] .milestone-dot{left:-30px;}
+  .formation-text .exp-period{display:block;margin-bottom:6px;}
+  .formation-item.milestone h3{font-size:1rem;}
+  .formation-thumb{margin-top:12px;width:100%;max-width:130px;aspect-ratio:4/3;border-radius:10px;overflow:hidden;border:1px solid var(--hairline);}
+  .formation-thumb img{width:100%;height:100%;object-fit:cover;}
+  @media (max-width:860px){
+    .formation-svg,.runner{display:none;}
+    .formation-item.milestone{width:100%;margin:0 !important;}
+    .milestone-dot{display:none;}
+  }
+  .cert-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px;}
+
+  .chatax-section{padding-block:90px 110px;background:linear-gradient(180deg,var(--void) 0%,var(--void) 70%,var(--signal-dim) 90%,var(--signal) 100%);}
+  .chatax-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:center;}
+  .chatax-photo{position:relative;border-radius:var(--r-lg) var(--r-lg) 50px var(--r-lg);overflow:hidden;aspect-ratio:3/4;box-shadow:0 30px 60px -30px rgba(0,0,0,.55);}
+  .chatax-photo::after{content:"";position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:2;}
+  .chatax-photo.in::after{animation:chataxFlash .8s ease-out .05s both;}
+  .chatax-photo:hover::after{animation:chataxFlash .6s ease-out;}
+  .chatax-photo:hover img{transform:scale(1.03);}
+  .chatax-photo img{transition:transform .5s cubic-bezier(.16,1,.3,1);}
+  @keyframes chataxFlash{0%{opacity:0;}10%{opacity:1;}45%{opacity:.15;}100%{opacity:0;}}
+  @media (prefers-reduced-motion:reduce){.chatax-photo::after{animation:none !important;}}
+  .chatax-photo img{width:100%;height:100%;object-fit:cover;}
+
+  .cam-ui{position:absolute;inset:0;z-index:3;pointer-events:none;opacity:0;transition:opacity .3s ease;}
+  .chatax-photo:hover .cam-ui{opacity:1;}
+  .cam-top,.cam-bottom{position:absolute;left:0;right:0;display:flex;align-items:center;transform:translateY(-6px);transition:transform .35s cubic-bezier(.16,1,.3,1);}
+  .chatax-photo:hover .cam-top{transform:translateY(0);}
+  .chatax-photo:hover .cam-bottom{transform:translateY(0);}
+  .cam-top{top:0;justify-content:space-between;padding:14px 16px;background:linear-gradient(180deg,rgba(0,0,0,.5),transparent);}
+  .cam-bottom{bottom:0;transform:translateY(10px);justify-content:space-between;padding:16px 22px 18px;background:linear-gradient(0deg,rgba(0,0,0,.55),transparent);}
+  .chatax-photo:hover .cam-bottom{transform:translateY(0);}
+  .cam-icon{width:18px;height:18px;opacity:.85;}
+  .cam-mode{font-family:var(--body);font-weight:600;font-size:.62rem;letter-spacing:.16em;color:#fff;text-transform:uppercase;opacity:.85;}
+  .cam-thumb{width:26px;height:26px;border-radius:6px;border:1.5px solid rgba(255,255,255,.85);background:rgba(255,255,255,.14);}
+  .cam-shutter{width:52px;height:52px;border-radius:50%;background:#fff;border:none;padding:0;box-shadow:0 0 0 3px rgba(255,255,255,.35);transition:transform .15s ease;pointer-events:auto;cursor:pointer;}
+  .chatax-photo:hover .cam-shutter{transform:scale(1);}
+  .cam-shutter:hover{transform:scale(1.1);}
+  .cam-shutter:active{transform:scale(.92);}
+  .cam-flip{width:20px;height:20px;opacity:.85;}
+  @media (prefers-reduced-motion:reduce){.cam-ui,.cam-top,.cam-bottom{transition:none;}}
+  .chatax-brand{display:flex;align-items:center;gap:14px;margin-bottom:20px;}
+  .chatax-logo{width:38px;height:38px;object-fit:contain;flex:none;opacity:1;background:none;}
+  .chatax-brand h2{font-size:clamp(1.9rem,3.2vw,2.6rem);}
+  .chatax-text p:not(.eyebrow){color:var(--bone-dim);font-size:1.02rem;line-height:1.8;max-width:58ch;}
+  .chatax-text p+p{margin-top:18px;}
+  @media (max-width:1080px){.chatax-grid{grid-template-columns:1fr;}}
+  .cert-pill{display:flex;align-items:center;gap:10px;background:var(--charcoal);border:1px solid var(--hairline);border-radius:999px;padding:8px 16px 8px 8px;cursor:pointer;transition:border-color .2s ease;}
+  .cert-pill:hover{border-color:var(--signal-dim);}
+  .cert-pill img{width:32px;height:32px;border-radius:50%;object-fit:cover;}
+  .cert-pill span{font-size:.82rem;font-weight:600;}
+  .cert-pill.no-img{cursor:default;padding-left:16px;}
+  .cert-pill.no-img span{color:var(--ash);font-weight:500;}
+
+  .hub-head{padding-top:calc(96px + 3vw);padding-bottom:26px;}
+  .hub-head h1{font-size:clamp(1.9rem,3.8vw,2.9rem);}
+  .breadcrumb{display:flex;align-items:center;gap:8px;font-family:var(--body);font-weight:600;font-size:.8rem;color:var(--ash);margin-bottom:28px;}
+  .breadcrumb button{background:none;border:none;color:var(--signal-bright);font-family:var(--body);font-weight:600;font-size:.8rem;padding:0;}
+  .breadcrumb button:hover{text-decoration:underline;}
+
+  .folder-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;padding-bottom:100px;}
+  .folder-card{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:4/3;cursor:pointer;border:1.5px solid var(--hairline);transition:border-color .35s ease;}
+  .folder-card:hover{border-color:var(--signal);}
+  .folder-card img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.16,1,.3,1),filter .6s ease;}
+  .folder-card:hover img{transform:scale(1.08);filter:blur(3px) brightness(.5);}
+  .folder-reveal{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;transform:scale(.92);transition:opacity .4s ease,transform .4s cubic-bezier(.16,1,.3,1);pointer-events:none;text-align:center;}
+  .folder-card:hover .folder-reveal{opacity:1;transform:scale(1);}
+  .folder-reveal h3{font-family:var(--display);font-weight:400;text-transform:uppercase;letter-spacing:.03em;font-size:clamp(1.2rem,2.2vw,1.6rem);color:var(--bone);}
+
+  .masonry{column-count:4;column-gap:16px;padding-bottom:100px;}
+  .g-item{break-inside:avoid;margin-bottom:16px;position:relative;border-radius:var(--r-sm);overflow:hidden;border:1.5px solid var(--hairline);cursor:pointer;opacity:0;transform:translateY(16px);animation:gItemIn .6s cubic-bezier(.16,1,.3,1) forwards;transition:border-color .3s ease;}
+  @keyframes gItemIn{to{opacity:1;transform:none;}}
+  .g-item img{width:100%;display:block;transition:transform .7s ease,filter .7s ease;}
+  .g-item:hover{border-color:var(--signal-dim);}
+  .g-item[data-mood="tt"]:hover img{transform:scale(1.05);filter:brightness(.95) contrast(1.1) saturate(1.08);}
+  .g-item[data-mood="padel"]:hover img{transform:scale(1.06);filter:contrast(1.06) saturate(1.1);}
+  .g-item[data-mood="braderie"]:hover img{transform:scale(1.05);filter:brightness(.95) saturate(1.05);}
+  .g-item[data-mood="visuel"]:hover img{transform:scale(1.03);filter:saturate(1.06);}
+
+  .lightbox{position:fixed;inset:0;z-index:200;background:rgba(10,10,11,.97);display:none;align-items:center;justify-content:center;padding:5vh 4vw;backdrop-filter:blur(6px);}
+  .lightbox.open{display:flex;animation:lbIn .3s ease;}
+  @keyframes lbIn{from{opacity:0;}to{opacity:1;}}
+  .lb-figure{max-width:min(1000px,88vw);max-height:86vh;display:flex;flex-direction:column;gap:14px;align-items:center;}
+  .lb-figure img{max-height:78vh;width:auto;border-radius:var(--r-sm);box-shadow:0 30px 80px -20px rgba(0,0,0,.7);}
+  .lb-caption{display:flex;gap:16px;align-items:center;font-family:var(--body);font-weight:600;font-size:.8rem;color:var(--ash);}
+  .lb-caption .lb-cat{color:var(--signal-bright);text-transform:uppercase;letter-spacing:.05em;}
+  .lb-close,.lb-prev,.lb-next{position:fixed;background:rgba(255,255,255,.06);border:1px solid var(--hairline);color:var(--bone);width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:background .2s ease,border-color .2s ease;}
+  .lb-close:hover,.lb-prev:hover,.lb-next:hover{background:var(--signal);border-color:var(--signal);color:var(--void);}
+  .lb-close{top:24px;right:24px;}
+
+  .cv-modal{position:fixed;inset:0;z-index:210;background:rgba(10,10,11,.97);display:none;align-items:center;justify-content:center;padding:5vh 4vw;backdrop-filter:blur(6px);}
+  .cv-modal.open{display:flex;animation:lbIn .3s ease;}
+  .cv-modal-inner{width:min(700px,92vw);max-height:88vh;display:flex;flex-direction:column;gap:14px;align-items:center;overflow-y:auto;}
+  .cv-modal-inner img{width:100%;height:auto;flex:none;object-fit:contain;display:block;border-radius:var(--r-sm);box-shadow:0 30px 80px -20px rgba(0,0,0,.7);}
+  #cvImg{opacity:1;background:#fff;min-height:0;border:none;padding:0;}
+  .cv-modal-dl{font-family:var(--body);font-weight:600;font-size:.8rem;color:var(--ash);}
+  .cv-modal-dl a{color:var(--signal-bright);}
+  .lb-prev{left:24px;top:50%;transform:translateY(-50%);}
+  .lb-next{right:24px;top:50%;transform:translateY(-50%);}
+
+  @media (max-width:1080px){
+    .skills-grid,.folder-grid,.cred-grid,.gate-grid{grid-template-columns:repeat(2,1fr);}
+    .masonry{column-count:3;}
+    .vm-grid{grid-template-columns:1fr;}
+    .hero-v2{grid-template-columns:1fr;}
+    .hero-visual{order:-1;max-width:380px;}
+    .contact-band-inner{grid-template-columns:1fr;text-align:center;justify-items:center;}
+    .contact-photo{margin-inline:auto;width:260px;}
+    .contact-grid-info{grid-template-columns:1fr 1fr;margin-inline:auto;}
+    .contact-social{justify-content:center;}
+  }
+  @media (max-width:860px){
+    nav.primary{display:none;}
+    .burger{display:flex;align-items:center;justify-content:center;}
+    .mobile-menu{display:flex;}
+    .hero-v2{padding-top:120px;}
+    .stat-row{grid-template-columns:repeat(2,1fr);}
+    .masonry{column-count:2;}
+    .lb-prev,.lb-next{width:38px;height:38px;}
+    .timeline::before{left:14px;}
+    .t-item{grid-template-columns:28px 1fr;}
+    .t-period{grid-column:1/3;text-align:left;padding:0 0 6px;}
+    .t-dot-col{grid-row:2;}
+    .t-body{grid-row:2;}
+    .contact-photo{width:240px;}
+    .contact-grid-info{grid-template-columns:1fr;margin-inline:auto;}
+  }
+  @media (max-width:520px){
+    .skills-grid,.folder-grid,.cred-grid,.gate-grid{grid-template-columns:1fr;}
+    .masonry{column-count:1;}
+    .lb-prev{left:8px;}.lb-next{right:8px;}
+  }
+</style>
+
+<div class="grain"></div>
+<div id="cursorBall" aria-hidden="true"></div>
+<div id="journeyBall" aria-hidden="true">
+  <div class="journey-surface" id="journeySurface"></div>
+  <div class="journey-photos" id="journeyPhotos">
+    <img class="journey-photo active" data-idx="0" src="img/journey/misterping.jpg" alt="">
+    <img class="journey-photo" data-idx="1" src="img/journey/padelshot.jpg" alt="">
+    <img class="journey-photo" data-idx="2" src="img/journey/alcl.jpg" alt="">
+    <img class="journey-photo" data-idx="3" src="img/journey/lisieux.jpg" alt="">
+  </div>
+</div>
+<div id="journeyPaddle" aria-hidden="true">
+  <img src="img/journey/paddle.png" alt="">
+</div>
+
+<header class="site">
+  <div class="wrap header-inner">
+    <button class="logo" data-nav="home" aria-label="Léonard Chatoux — accueil">
+      <img src="img/logo-bone.png" alt="Logo Léonard Chatoux">
+      <span class="logo-text">Léonard Chatoux</span>
+    </button>
+    <nav class="primary" aria-label="Navigation principale">
+      <button data-nav="home" class="nav-tab nav-home" aria-label="Accueil"><img src="img/logo-bone.png" alt="" class="nav-home-icon"></button>
+      <button data-nav="about" class="nav-tab">À propos</button>
+      <button data-nav="photos" class="nav-tab">Photos</button>
+      <button data-nav="visuels" class="nav-tab">Visuels</button>
+    </nav>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <button class="header-cta" type="button" data-nav="home" data-anchor="contact">Me contacter</button>
+      <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Navigation mobile">
+    <button data-nav="home" class="mobile-nav-tab">Accueil</button>
+    <button data-nav="about" class="mobile-nav-tab">À propos</button>
+    <button data-nav="photos" class="mobile-nav-tab">Photos</button>
+    <button data-nav="visuels" class="mobile-nav-tab">Visuels</button>
+  </nav>
+</header>
+
+<!-- ============ HOME ============ -->
+<main id="view-home" class="view active">
+  <section class="hero-v2 wrap">
+    <div class="hero-bio">
+      <p class="eyebrow">Léonard Chatoux</p>
+      <h1>Communication, <span>terrain</span> &amp; image.</h1>
+      <p class="hero-sub">Je m'appelle Léonard, j'ai 20 ans, et je crois qu'une bonne photo ou un bon post ne mentent jamais sur l'énergie du moment qu'ils racontent. Entre les amphis de l'IAE de Lille et les salles de tennis de table où j'ai grandi comme joueur puis comme entraîneur, j'ai appris à regarder avant d'appuyer sur le déclencheur — et à écouter avant de communiquer. Aujourd'hui, je cherche une alternance en marketing, communication et digital pour la rentrée 2026, avec l'envie simple de mettre cette sensibilité au service d'une structure qui a des histoires à raconter.</p>
+      <div class="hero-cv"><button class="btn btn-solid" id="openCvBtn" type="button">Télécharger mon CV</button></div>
+    </div>
+    <div class="hero-visual"><div class="hero-frame"><img src="img/portrait/hero.jpg" alt="Léonard Chatoux"></div></div>
+  </section>
+
+  <section class="wrap">
+    <div class="vm-grid reveal">
+      <div class="vm-card">
+        <p class="vm-label">Vision</p>
+        <p class="vm-text">Je crois qu'une communication efficace allie <b>stratégie claire</b> et créativité sincère — la rigueur du terrain au service d'une <b>image de marque</b> forte.</p>
+      </div>
+      <div class="vm-card">
+        <p class="vm-label">Mission</p>
+        <p class="vm-text">Je cherche activement une <b>alternance</b> où mettre cette vision en pratique — aider une structure à raconter ce qu'elle vit vraiment, sur le terrain, en coulisses, dans l'instant, avec des contenus qui <b>donnent envie de la suivre</b>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="gate-grid">
+      <button class="gate-card reveal" data-nav="about">
+        <img src="img/portrait/photographe-1.jpg" alt="À propos" style="object-position:78% 22%;">
+        <div class="gate-reveal"><h3>À propos</h3></div>
+      </button>
+      <button class="gate-card reveal" data-nav="photos">
+        <img src="img/gates/photos.jpg" alt="Photos">
+        <div class="gate-reveal"><h3>Photos</h3></div>
+      </button>
+      <button class="gate-card reveal" data-nav="visuels">
+        <img src="img/gates/visuels.jpg" alt="Visuels">
+        <div class="gate-reveal"><h3>Visuels</h3></div>
+      </button>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="section-head reveal"><h2>Services</h2><span class="section-num">01 — 04</span></div>
+    <div class="skills-grid">
+      <div class="skill-card reveal"><div class="skill-num">01</div><h3>Photos</h3><p>Être là au bon moment, appareil en main, pour ramener l'image qui raconte le match, l'événement ou la marque.</p></div>
+      <div class="skill-card reveal"><div class="skill-num">02</div><h3>Identité Visuelle</h3><p>Donner un visage cohérent à un club ou une enseigne — logo, affiches, déclinaisons.</p></div>
+      <div class="skill-card reveal"><div class="skill-num">03</div><h3>Stratégie de Contenu</h3><p>Penser des visuels et des montages qui donnent envie de s'arrêter et de suivre.</p></div>
+      <div class="skill-card reveal"><div class="skill-num">04</div><h3>Community Management</h3><p>Faire vivre une communauté au quotidien, avec authenticité plutôt qu'avec des formules toutes faites.</p></div>
+    </div>
+  </section>
+
+  <section class="contact-band" id="contact">
+    <div class="wrap contact-band-inner">
+      <div class="contact-photo"><img src="img/portrait/costume.jpg" alt="Léonard Chatoux"></div>
+      <div>
+        <p class="eyebrow">Contact</p>
+        <h2>Discutons de votre projet.</h2>
+        <p class="contact-name">Léonard Chatoux</p>
+        <p class="sub">Disponible pour une alternance dès la rentrée 2026, basé à Lille — mobile en France.</p>
+        <div class="contact-grid-info">
+          <a class="contact-chip" href="mailto:leonard.chatoux@gmail.com"><span class="chip-label">Email</span><span class="chip-value">leonard.chatoux@gmail.com</span></a>
+          <a class="contact-chip" href="tel:+33644398580"><span class="chip-label">Téléphone</span><span class="chip-value">06 44 39 85 80</span></a>
+        </div>
+        <div class="contact-social">
+          <a href="https://www.linkedin.com/in/léonard-chatoux-794581329/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://www.instagram.com/chatax_off" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="site wrap"><div class="footer-row"><div class="footer-brand"><img src="img/logo-bone.png" alt="Logo Léonard Chatoux"><p>© 2026 Léonard Chatoux</p></div></div></footer>
+</main>
+
+<!-- ============ À PROPOS ============ -->
+<main id="view-about" class="view">
+  <section class="about-title wrap">
+    <p class="eyebrow">À propos</p>
+  </section>
+
+  <section class="wrap" style="padding-top:14px;">
+    <div class="journey-layout" id="journeyLayout">
+      <div class="journey-ball-col"></div>
+      <div>
+        <div class="bio-block reveal" id="bioBlock">
+          <p class="bio-kicker">Passionné, rigoureux et façonné par la culture du sport.</p>
+          <p>Curieux et touche-à-tout dès le plus jeune âge, j'ai exploré de multiples disciplines avant de trouver mon ancrage dans le tennis de table. Licencié depuis septembre 2013, j'entame ma 14<sup>e</sup> saison autour de la table en évoluant au niveau National 2 en individuel et Pré-national par équipes, avec à la clé un titre de <b>Vice-champion de France Universitaire en double mixte (2026)</b>. Cette exigence du haut niveau m'a inculqué la discipline, le sens du détail et la persévérance.</p>
+          <p>Très tôt, j'ai prolongé cet engagement au-delà de la table : entraîneur, animateur fédéral, puis bénévole sur des événements majeurs — du circuit international WTT Champions et rencontres de PRO A jusqu'au tournoi WTA 250 de tennis à Rouen. Mon parcours s'est enrichi sur le terrain à travers des missions concrètes en gestion, logistique et communication chez <b>Misterping</b>, <b>Padelshot Barentin</b> ou encore en service civique à l'<b>ALCL Grand Quevilly</b>.</p>
+          <p>Aujourd'hui admis en <b>Licence 3 Marketing, Communication et Digital à l'IAE de Lille</b>, je mets cette double expertise sportive et stratégique au service de la création de contenu. Spécialisé dans la photographie de sport d'action, le graphisme et la communication digitale, j'accompagne structures, marques et athlètes pour valoriser leurs projets avec un regard dynamique, moderne et résolument humain.</p>
+          <div class="section-head"><h2>Expériences</h2><span class="section-num">2023 — 2026</span></div>
+        </div>
+        <div class="exp-steps-block" id="expTextCol">
+          <article class="exp-step active" data-idx="0">
+            <span class="exp-period">Août 2026</span>
+            <h3>Employé polyvalent</h3><span class="t-org">MISTERPING — Wattrelos</span>
+            <ul><li>Gestion des commandes &amp; de la logistique, suivi des stocks</li><li>Service client et flocage / collage de raquettes</li></ul>
+            <div class="t-photo"><img src="img/portrait/misterping.jpg" alt="Stock et logistique chez Misterping"></div>
+            <p class="t-photo-cap">Gestion des stocks, entrepôt Misterping</p>
+          </article>
+          <article class="exp-step" data-idx="1">
+            <span class="exp-period">Avril—Mai 2026</span>
+            <h3>Stage Gestion, Communication, Marketing</h3><span class="t-org">Padelshot — Rouen-Barentin</span>
+            <ul><li>Accueil, relation client et vente/service (bar, restauration, shop)</li><li>Communication : photos, affiches, gestion des réseaux sociaux</li><li>Animation des heures creuses et développement de l'espace tennis de table</li></ul>
+            <div class="t-photo"><img src="img/portrait/padelshot.jpg" alt="Léonard Chatoux au Padelshot Barentin"></div>
+            <p class="t-photo-cap">Arrivée au Padelshot Barentin, avril 2026</p>
+          </article>
+          <article class="exp-step" data-idx="2">
+            <span class="exp-period">2025—2026</span>
+            <h3>Service Civique</h3><span class="t-org">ALCL Grand Quevilly Tennis de Table</span>
+            <ul><li>Encadrement &amp; coaching des jeunes et adultes</li><li>Communication interne, réseaux sociaux, prospection</li><li>Événementiel : PRO A Dames, Loto, Tournoi International</li></ul>
+            <div class="t-photo"><img src="img/portrait/alcl-team.jpg" alt="Équipe ALCL Grand Quevilly Tennis de Table"></div>
+            <p class="t-photo-cap">Avec l'équipe, ALCL Grand Quevilly</p>
+          </article>
+          <article class="exp-step" data-idx="3">
+            <span class="exp-period">2023—2024</span>
+            <h3>Entraîneur de Tennis de Table &amp; Community Manager</h3><span class="t-org">ASTT Lisieux</span>
+            <ul><li>Encadrement &amp; coaching, création de contenus digitaux</li><li>Aide à l'organisation des 24H de Lisieux</li></ul>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-bottom:110px;" id="credSection">
+    <div class="section-head reveal"><h2>Parcours, Diplômes &amp; Certifications</h2><span class="section-num">2021 — 2027</span></div>
+    <div class="formation-track" id="formationTrack">
+      <svg class="formation-svg" id="formationSvg"><path class="path-ghost" id="pathGhost"/><path class="path-solid" id="pathSolid"/></svg>
+      <div class="runner" id="runner"><img src="img/portrait/hero.jpg" alt="Léonard Chatoux"></div>
+      <div class="formation-milestones">
+        <div class="formation-item milestone reveal" data-side="right">
+          <span class="milestone-dot"></span>
+          <span class="exp-period">2021</span>
+          <h3>Brevet des Collèges — Mention Très Bien</h3>
+          <span class="t-org">Collège Jeannine Vancayzeele, Thiberville · Option Anglais Euro</span>
+        </div>
+        <div class="formation-item milestone reveal" data-side="left">
+          <span class="milestone-dot"></span>
+          <span class="exp-period">2021</span>
+          <h3>Formation Initiateur de Club</h3>
+          <span class="t-org">Tennis de Table</span>
+        </div>
+        <div class="formation-item milestone has-img reveal" data-side="right" data-cred-img="img/diplomes/certif-pix.jpg" data-cred-label="Certification PIX">
+          <span class="milestone-dot"></span>
+          <span class="exp-period">Février 2024</span>
+          <h3>Certification PIX</h3>
+          <span class="t-org">Compétences numériques</span>
+          <div class="formation-thumb"><img src="img/diplomes/certif-pix.jpg" alt="Certification PIX"></div>
+        </div>
+        <div class="formation-item milestone has-img reveal" data-side="left" data-cred-img="img/diplomes/bac.jpg" data-cred-label="Baccalauréat Maths/SES, Lycée Augustin Fresnel">
+          <span class="milestone-dot"></span>
+          <span class="exp-period">2024</span>
+          <h3>Baccalauréat Maths/SES — Mention Assez Bien</h3>
+          <span class="t-org">Lycée Augustin Fresnel, Bernay · Option Espagnol Euro</span>
+          <div class="formation-thumb"><img src="img/diplomes/bac.jpg" alt="Baccalauréat"></div>
+        </div>
+        <div class="formation-item milestone has-img reveal" data-side="right" data-cred-img="img/diplomes/attestation-l2.jpg" data-cred-label="Licence 1 &amp; 2 — Gestion, IAE Rouen Normandie">
+          <span class="milestone-dot"></span>
+          <span class="exp-period">2024—2026</span>
+          <h3>Licence 1 &amp; 2 — Gestion</h3>
+          <span class="t-org">IAE Rouen Normandie</span>
+          <div class="formation-thumb"><img src="img/diplomes/attestation-l2.jpg" alt="Attestation de réussite Licence 2"></div>
+        </div>
+        <div class="formation-item milestone reveal" data-side="left">
+          <span class="milestone-dot"></span>
+          <span class="exp-period">2025</span>
+          <h3>Formation Animateur Fédéral</h3>
+          <span class="t-org">Tennis de Table</span>
+        </div>
+        <div class="formation-item milestone reveal" data-side="right">
+          <span class="milestone-dot"></span>
+          <span class="exp-period">2026—2027</span>
+          <h3>Licence 3 Marketing, Communication &amp; Digital</h3>
+          <span class="t-org">IAE Lille · en cours</span>
+        </div>
+      </div>
+    </div>
+    <div class="cert-row reveal">
+      <div class="cert-pill no-img"><span>Formation Premiers Secours · PSC1</span></div>
+    </div>
+  </section>
+
+  <section class="chatax-section">
+    <div class="wrap chatax-grid">
+      <div class="chatax-photo reveal">
+        <img src="img/portrait/chatax.jpg" alt="Léonard Chatoux (CHATAX) en reportage, championnat de France FFTT" style="object-position:80% 25%;">
+        <div class="cam-ui" aria-hidden="true">
+          <div class="cam-top">
+            <svg class="cam-icon" viewBox="0 0 24 24" fill="#fff"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg>
+            <span class="cam-mode">Photo</span>
+            <svg class="cam-icon" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="13" r="7"/><path d="M12 13V9M9.5 3h5"/></svg>
+          </div>
+          <div class="cam-bottom">
+            <span class="cam-thumb"></span>
+            <button class="cam-shutter" type="button" data-nav="photos" aria-label="Voir les photos"></button>
+            <svg class="cam-flip" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 4.5l3 3-3 3"/><path d="M7 19.5l-3-3 3-3"/><path d="M20 7.5a8 8 0 00-14.5-4"/><path d="M4 16.5a8 8 0 0014.5 4"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="chatax-text reveal">
+        <div class="chatax-brand"><img src="img/logo-bone.png" alt="Logo CHATAX" class="chatax-logo"><h2>Chatax</h2></div>
+        <p class="eyebrow">Mon regard photo</p>
+        <p>Tout a commencé très jeune, entre un téléphone et un appareil photo jaune pour enfants — une curiosité pour l'image qui s'est ensuite éteinte pendant plusieurs années.</p>
+        <p>Le déclic est revenu en octobre 2025, lors d'un tournoi de tennis de table : un ami avait son appareil, j'ai testé, et j'ai adoré. Dès janvier, j'investissais dans un Canon 750D avec un objectif 18-55mm, puis en mai dans un 70-200mm f/2.8 — de quoi capturer le jeu au plus près, sans jamais le déranger.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site wrap"><div class="footer-row"><div class="footer-brand"><img src="img/logo-bone.png" alt="Logo Léonard Chatoux"><p>© 2026 Léonard Chatoux</p></div></div></footer>
+</main>
+
+<!-- ============ PHOTOS ============ -->
+<main id="view-photos" class="view">
+  <div class="wrap hub-head"><p class="eyebrow">Photos</p><h1>Galerie</h1></div>
+  <div class="wrap" id="photos-covers"><div class="folder-grid" id="photosFolderGrid"></div></div>
+  <div class="wrap" id="photos-open" style="display:none;">
+    <div class="breadcrumb"><button data-back="photos">Photos</button><span>/</span><span id="photosOpenLabel"></span></div>
+    <div class="masonry" id="photosMasonry"></div>
+  </div>
+  <footer class="site wrap"><div class="footer-row"><div class="footer-brand"><img src="img/logo-bone.png" alt="Logo Léonard Chatoux"><p>© 2026 Léonard Chatoux</p></div></div></footer>
+</main>
+
+<!-- ============ VISUELS ============ -->
+<main id="view-visuels" class="view">
+  <div class="wrap hub-head"><p class="eyebrow">Visuels</p><h1>Création de contenu</h1></div>
+  <div class="wrap" id="visuels-covers"><div class="folder-grid" id="visuelsFolderGrid"></div></div>
+  <div class="wrap" id="visuels-open" style="display:none;">
+    <div class="breadcrumb"><button data-back="visuels">Visuels</button><span>/</span><span id="visuelsOpenLabel"></span></div>
+    <div class="masonry" id="visuelsMasonry"></div>
+  </div>
+  <footer class="site wrap"><div class="footer-row"><div class="footer-brand"><img src="img/logo-bone.png" alt="Logo Léonard Chatoux"><p>© 2026 Léonard Chatoux</p></div></div></footer>
+</main>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visionneuse plein écran">
+  <button class="lb-close" id="lbClose" aria-label="Fermer">✕</button>
+  <button class="lb-prev" id="lbPrev" aria-label="Précédent">‹</button>
+  <button class="lb-next" id="lbNext" aria-label="Suivant">›</button>
+  <div class="lb-figure">
+    <img id="lbImg" src="" alt="">
+    <div class="lb-caption"><span class="lb-cat" id="lbCat"></span><span id="lbMeta"></span><span id="lbCount"></span></div>
+  </div>
+</div>
+
+<div class="cv-modal" id="cvModal" role="dialog" aria-modal="true" aria-label="CV en PDF">
+  <button class="lb-close" id="cvClose" aria-label="Fermer">✕</button>
+  <div class="cv-modal-inner">
+    <img id="cvImg" src="" alt="CV de Léonard Chatoux">
+    <div class="cv-modal-dl">Télécharger le PDF : <a id="cvDirectLink" href="cv-leonard-chatoux.pdf" target="_blank" rel="noopener">cv-leonard-chatoux.pdf</a></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  const range = (n) => Array.from({length:n}, (_,i) => String(i+1).padStart(3,'0')+'.jpg');
+
+  function wireImages(root){
+    (root||document).querySelectorAll('img:not([data-wired])').forEach(img=>{
+      img.dataset.wired = '1';
+      if(img.complete && img.naturalWidth>0){ img.classList.add('loaded'); return; }
+      if(img.complete && img.naturalWidth===0){ img.classList.add('broken'); return; }
+      img.addEventListener('load', ()=> img.classList.add('loaded'));
+      img.addEventListener('error', ()=> img.classList.add('broken'));
+    });
+  }
+
+  /* tri chronologique strict : plus récent en haut */
+  const ALBUMS = {
+    'tennis-de-table': {label:'Tennis de Table', mood:'tt', cover:'cover.jpg', files: range(103)},
+    'braderie-lille-2026': {label:'Braderie de Lille 2026', mood:'braderie', cover:'cover.jpg', files: range(98)},
+    'padel': {label:'Padel', mood:'padel', cover:'cover.jpg', files: range(21)},
+  };
+  const DOSSIERS = {
+    'alcl-grand-quevilly': {label:'ALCL Grand Quevilly TT', cover:'cover.jpg', files: range(61)},
+    'padelshot-barentin': {label:'Padelshot Barentin', cover:'cover.jpg', files: range(20)},
+    'multiset-sport': {label:'Multiset Sport', cover:'cover.jpg', files: range(9)},
+    'astt-lisieux': {label:'ASTT Lisieux', cover:'cover.jpg', files: range(41)},
+    'autres': {label:'Projets Libres', cover:'cover.jpg', files: range(20)},
+  };
+
+  const views = {home:'view-home', about:'view-about', photos:'view-photos', visuels:'view-visuels'};
+
+  function showAlbum(key){
+    const a = ALBUMS[key]; if(!a) return;
+    document.getElementById('photos-covers').style.display='none';
+    document.getElementById('photos-open').style.display='block';
+    document.getElementById('photosOpenLabel').textContent = a.label;
+    const m = document.getElementById('photosMasonry');
+    m.innerHTML = a.files.map((fn,i)=>`
+      <div class="g-item" data-mood="${a.mood}" data-index="${i}" style="animation-delay:${(i%8)*0.05}s">
+        <img loading="lazy" src="img/photos/${key}/${fn}" alt="${a.label} ${i+1}">
+      </div>`).join('');
+    m.querySelectorAll('.g-item').forEach(el=> el.addEventListener('click', ()=> openLightbox('photos', key, Number(el.dataset.index))));
+    wireImages(m);
+  }
+  function hideAlbum(){
+    document.getElementById('photos-covers').style.display='block';
+    document.getElementById('photos-open').style.display='none';
+  }
+  function showDossier(key){
+    const d = DOSSIERS[key]; if(!d) return;
+    document.getElementById('visuels-covers').style.display='none';
+    document.getElementById('visuels-open').style.display='block';
+    document.getElementById('visuelsOpenLabel').textContent = d.label;
+    const m = document.getElementById('visuelsMasonry');
+    m.innerHTML = d.files.map((fn,i)=>`
+      <div class="g-item" data-mood="visuel" data-index="${i}" style="animation-delay:${(i%8)*0.05}s">
+        <img loading="lazy" src="img/visuels/${key}/${fn}" alt="${d.label} ${i+1}">
+      </div>`).join('');
+    m.querySelectorAll('.g-item').forEach(el=> el.addEventListener('click', ()=> openLightbox('visuels', key, Number(el.dataset.index))));
+    wireImages(m);
+  }
+  function hideDossier(){
+    document.getElementById('visuels-covers').style.display='block';
+    document.getElementById('visuels-open').style.display='none';
+  }
+
+  function renderView(name, opts){
+    opts = opts || {};
+    Object.entries(views).forEach(([k,id]) => document.getElementById(id).classList.toggle('active', k===name));
+    document.querySelectorAll('nav.primary button.nav-tab, .mobile-menu button.mobile-nav-tab').forEach(b=> b.classList.toggle('active', b.dataset.nav===name));
+    window.scrollTo({top:0,behavior:'auto'});
+    if(name==='photos' && opts.open && ALBUMS[opts.open]) showAlbum(opts.open); else hideAlbum();
+    if(name==='visuels' && opts.open && DOSSIERS[opts.open]) showDossier(opts.open); else hideDossier();
+    if(name==='about'){
+      requestAnimationFrame(()=> requestAnimationFrame(()=>{ buildFormationPath(); updateFormationScroll(); updateJourney(true); }));
+    } else {
+      journeyBall.classList.remove('active');
+      journeyPaddle.classList.remove('active');
+      journeyWasActive = false;
+    }
+  }
+
+  function goTo(name, opts){
+    opts = opts || {};
+    history.pushState({view:name, open:opts.open||null}, '', location.pathname + location.search);
+    renderView(name, opts);
+  }
+  window.addEventListener('popstate', (e)=>{
+    const s = e.state;
+    renderView(s ? s.view : 'home', {open: s ? s.open : null});
+  });
+  history.replaceState({view:'home', open:null}, '', location.pathname + location.search);
+
+  document.querySelectorAll('[data-nav]').forEach(btn=>{
+    btn.addEventListener('click', (e)=>{
+      e.preventDefault();
+      goTo(btn.dataset.nav, {open:btn.dataset.open});
+      if(btn.dataset.anchor){
+        requestAnimationFrame(()=> requestAnimationFrame(()=>{
+          const target = document.getElementById(btn.dataset.anchor);
+          if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+        }));
+      }
+    });
+  });
+
+  const photosFolderGrid = document.getElementById('photosFolderGrid');
+  Object.entries(ALBUMS).forEach(([key,a])=>{
+    const div = document.createElement('div');
+    div.className = 'folder-card';
+    div.innerHTML = `<img src="img/photos/${key}/${a.cover}" alt="${a.label}" loading="lazy"><div class="folder-reveal"><h3>${a.label}</h3></div>`;
+    div.addEventListener('click', ()=> goTo('photos', {open:key}));
+    photosFolderGrid.appendChild(div);
+  });
+  document.querySelector('#photos-open .breadcrumb button').addEventListener('click', ()=> goTo('photos', {open:null}));
+
+  const visuelsFolderGrid = document.getElementById('visuelsFolderGrid');
+  Object.entries(DOSSIERS).forEach(([key,d])=>{
+    const div = document.createElement('div');
+    div.className = 'folder-card';
+    div.innerHTML = `<img src="img/visuels/${key}/${d.cover}" alt="${d.label}" loading="lazy"><div class="folder-reveal"><h3>${d.label}</h3></div>`;
+    div.addEventListener('click', ()=> goTo('visuels', {open:key}));
+    visuelsFolderGrid.appendChild(div);
+  });
+  document.querySelector('#visuels-open .breadcrumb button').addEventListener('click', ()=> goTo('visuels', {open:null}));
+
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+  const lbCat = document.getElementById('lbCat');
+  const lbMeta = document.getElementById('lbMeta');
+  const lbCount = document.getElementById('lbCount');
+  let lbCtx = null;
+  function lbData(){
+    if(lbCtx.kind==='photos'){ const a=ALBUMS[lbCtx.key]; return {label:a.label, files:a.files, base:`img/photos/${lbCtx.key}/`}; }
+    const d=DOSSIERS[lbCtx.key]; return {label:d.label, files:d.files, base:`img/visuels/${lbCtx.key}/`};
+  }
+  function openLightbox(kind, key, index){
+    lbCtx = {kind, key, index};
+    renderLightbox();
+    lb.classList.add('open');
+    document.body.style.overflow='hidden';
+  }
+  function closeLightbox(){ lb.classList.remove('open'); document.body.style.overflow=''; }
+  function renderLightbox(){
+    const {label, files, base} = lbData();
+    const fn = files[lbCtx.index];
+    lbImg.classList.remove('loaded','broken'); lbImg.removeAttribute('data-wired');
+    lbImg.src = base+fn; lbImg.alt = `${label} ${lbCtx.index+1}`;
+    wireImages(lb);
+    lbCat.textContent = label;
+    lbMeta.textContent = (lbCtx.kind==='photos' ? 'Cliché ' : 'Création ') + String(lbCtx.index+1).padStart(2,'0');
+    lbCount.textContent = `${String(lbCtx.index+1).padStart(2,'0')} / ${String(files.length).padStart(2,'0')}`;
+  }
+  function step(dir){
+    const {files} = lbData();
+    lbCtx.index = (lbCtx.index + dir + files.length) % files.length;
+    renderLightbox();
+  }
+  document.getElementById('lbClose').addEventListener('click', closeLightbox);
+  document.getElementById('lbPrev').addEventListener('click', ()=>step(-1));
+  document.getElementById('lbNext').addEventListener('click', ()=>step(1));
+  lb.addEventListener('click', (e)=>{ if(e.target===lb) closeLightbox(); });
+  document.addEventListener('keydown', (e)=>{
+    if(!lb.classList.contains('open')) return;
+    if(e.key==='Escape') closeLightbox();
+    if(e.key==='ArrowLeft' && lbCtx) step(-1);
+    if(e.key==='ArrowRight' && lbCtx) step(1);
+  });
+
+  const cvModal = document.getElementById('cvModal');
+  const cvImg = document.getElementById('cvImg');
+  function openCv(){
+    if(!cvImg.getAttribute('src')) cvImg.setAttribute('src', 'img/cv-preview.jpg');
+    cvModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeCv(){ cvModal.classList.remove('open'); document.body.style.overflow=''; }
+  document.getElementById('openCvBtn').addEventListener('click', openCv);
+  document.getElementById('cvClose').addEventListener('click', closeCv);
+  cvModal.addEventListener('click', (e)=>{ if(e.target===cvModal) closeCv(); });
+  document.addEventListener('keydown', (e)=>{
+    if(cvModal.classList.contains('open') && e.key==='Escape') closeCv();
+  });
+  let touchX=null;
+  lb.addEventListener('touchstart', e=> touchX = e.changedTouches[0].clientX, {passive:true});
+  lb.addEventListener('touchend', e=>{
+    if(touchX===null || !lbCtx) return;
+    const dx = e.changedTouches[0].clientX - touchX;
+    if(Math.abs(dx) > 50) step(dx>0 ? -1 : 1);
+    touchX=null;
+  }, {passive:true});
+
+  document.querySelectorAll('[data-cred-img]').forEach(card=>{
+    card.addEventListener('click', ()=>{
+      lbCtx = null;
+      lbImg.src = card.dataset.credImg; lbImg.alt = card.dataset.credLabel || '';
+      lbCat.textContent = 'Diplôme'; lbMeta.textContent = card.dataset.credLabel || ''; lbCount.textContent = '';
+      lb.classList.add('open'); document.body.style.overflow='hidden';
+    });
+  });
+
+  /* parcours scolaire : ma photo "court" le long d'un tracé reliant les étapes */
+  function buildFormationPath(){
+    const track = document.getElementById('formationTrack');
+    if(!track || track.offsetParent===null) return false;
+    const svg = document.getElementById('formationSvg');
+    const runner = document.getElementById('runner');
+    const pathGhost = document.getElementById('pathGhost');
+    const pathSolid = document.getElementById('pathSolid');
+    const rect = track.getBoundingClientRect();
+    const W = track.clientWidth, H = track.clientHeight;
+    if(!W || !H) return false;
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    const dots = Array.from(track.querySelectorAll('.milestone-dot'));
+    const pts = dots.map(d=>{
+      const dr = d.getBoundingClientRect();
+      return { x: dr.left - rect.left + dr.width/2, y: dr.top - rect.top + dr.height/2 };
+    });
+    if(pts.length < 2) return false;
+    let d = `M${pts[0].x},${pts[0].y}`;
+    for(let i=0;i<pts.length-1;i++){
+      const p0=pts[i], p1=pts[i+1];
+      const midY=(p0.y+p1.y)/2;
+      d += ` C${p0.x},${midY} ${p1.x},${midY} ${p1.x},${p1.y}`;
+    }
+    pathGhost.setAttribute('d', d);
+    pathSolid.setAttribute('d', d);
+    runner.style.offsetPath = `path('${d}')`;
+    const len = pathSolid.getTotalLength();
+    pathSolid.style.strokeDasharray = String(len);
+    track.dataset.len = String(len);
+    track.dataset.ready = '1';
+    return true;
+  }
+  function updateFormationScroll(){
+    const track = document.getElementById('formationTrack');
+    const runnerEl = document.getElementById('runner');
+    if(!track || track.dataset.ready!=='1') return;
+    const rect = track.getBoundingClientRect();
+    const vh = window.innerHeight;
+    let progress = (vh*0.7 - rect.top) / rect.height;
+    progress = Math.max(0, Math.min(1, progress));
+    const pathSolid = document.getElementById('pathSolid');
+    const len = parseFloat(track.dataset.len||'0');
+    pathSolid.style.strokeDashoffset = String(len*(1-progress));
+    runnerEl.style.offsetDistance = (progress*100)+'%';
+    runnerEl.classList.toggle('show', rect.top < vh*0.9 && rect.bottom > 0);
+  }
+  window.addEventListener('resize', ()=>{ buildFormationPath(); updateFormationScroll(); });
+
+  /* curseur balle de ping-pong + balle-voyage qui descend dans la bio et devient la roue Expériences */
+  const fine = window.matchMedia && matchMedia('(pointer:fine)').matches;
+  const reduceMotion = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const cursorBall = document.getElementById('cursorBall');
+  const journeyBall = document.getElementById('journeyBall');
+  const journeySurface = document.getElementById('journeySurface');
+  const journeyPhotos = document.getElementById('journeyPhotos');
+  const journeyPhotoImgs = Array.from(document.querySelectorAll('.journey-photo'));
+  const journeyPaddle = document.getElementById('journeyPaddle');
+  let bx = innerWidth/2, by = innerHeight/2;
+  let journeyX = null, journeyIdx = -1, journeyWasActive = false;
+
+  function recalcJourneyX(){
+    const col = document.querySelector('.journey-ball-col');
+    if(col && col.offsetParent!==null){
+      const r = col.getBoundingClientRect();
+      journeyX = r.left + r.width/2;
+    }
+  }
+  window.addEventListener('resize', recalcJourneyX);
+
+  const CURSOR_MIN_WIDTH = 860;
+  function updateCursorMode(){
+    const enabled = fine && !reduceMotion && innerWidth > CURSOR_MIN_WIDTH;
+    document.documentElement.classList.toggle('custom-cursor', enabled);
+    cursorBall.classList.toggle('show', enabled);
+  }
+  if(fine && !reduceMotion){
+    updateCursorMode();
+    window.addEventListener('resize', updateCursorMode);
+    let mx=bx, my=by, vx=0, vy=0;
+    document.addEventListener('mousemove', e=>{ mx=e.clientX; my=e.clientY; });
+    (function cursorLoop(){
+      vx += (mx-bx)*0.2; vx*=0.68;
+      vy += (my-by)*0.2; vy*=0.68;
+      bx+=vx; by+=vy;
+      cursorBall.style.transform = `translate(${bx}px,${by}px) translate(-50%,-50%)`;
+      requestAnimationFrame(cursorLoop);
+    })();
+  }
+
+  /* balle-voyage : entité totalement indépendante du curseur — position fixée au scroll uniquement */
+  let journeySteps = null;
+  function updateJourney(force){
+    const layout = document.getElementById('journeyLayout');
+    const bioBlock = document.getElementById('bioBlock');
+    if(!journeySteps) journeySteps = Array.from(document.querySelectorAll('.exp-step'));
+    if(!layout || !bioBlock || layout.offsetParent===null){
+      if(journeyWasActive){ journeyBall.classList.remove('active'); journeyPaddle.classList.remove('active'); journeyWasActive=false; }
+      return;
+    }
+    const layoutRect = layout.getBoundingClientRect();
+    const roughlyVisible = layoutRect.top < window.innerHeight*0.92 && layoutRect.bottom > 0;
+    if(!roughlyVisible){
+      if(journeyWasActive){ journeyBall.classList.remove('active'); journeyPaddle.classList.remove('active'); journeyWasActive=false; }
+      return;
+    }
+    if(journeyX===null || force) recalcJourneyX();
+
+    const centerY = window.innerHeight*0.42;
+    const bioRect = bioBlock.getBoundingClientRect();
+    const pastBio = bioRect.bottom < centerY;
+
+    const lastRect = journeySteps[journeySteps.length-1].getBoundingClientRect();
+    const exitDist = window.innerHeight*0.35;
+    let pOut = (centerY - lastRect.bottom) / exitDist;
+    pOut = Math.max(0, Math.min(1, pOut));
+
+    /* garde-fou : arrêt net avant la section Parcours/Diplômes, jamais de chevauchement */
+    const credSection = document.getElementById('credSection');
+    if(credSection){
+      const credTop = credSection.getBoundingClientRect().top;
+      const safeMargin = 90;
+      if(credTop < centerY + safeMargin) pOut = 1;
+    }
+
+    if(pOut>=1){
+      if(journeyWasActive){ journeyBall.classList.remove('active'); journeyPaddle.classList.remove('active'); journeyWasActive=false; }
+      return;
+    }
+    if(!journeyWasActive){ journeyBall.classList.add('active'); journeyWasActive=true; }
+
+    const SIZE = 116;
+    const BALL_RAISE = 70;
+    const Y = centerY - BALL_RAISE;
+    const reveal = pastBio ? (1-pOut) : 0;
+
+    journeyBall.style.width = SIZE+'px';
+    journeyBall.style.height = SIZE+'px';
+    journeyBall.style.left = (journeyX||window.innerWidth*0.12)+'px';
+    journeyBall.style.top = Y+'px';
+    journeySurface.style.opacity = String(1-reveal);
+    journeyPhotos.style.opacity = String(reveal);
+
+    journeyPaddle.style.left = (journeyX||window.innerWidth*0.12)+'px';
+    journeyPaddle.style.top = (Y + SIZE/2 + 96)+'px';
+    journeyPaddle.classList.toggle('active', reveal>0.15);
+
+    if(pastBio && pOut<1){
+      let idx = 0, best = Infinity;
+      journeySteps.forEach((s,i)=>{
+        const r = s.getBoundingClientRect();
+        const dist = Math.abs((r.top+r.height/2)-centerY);
+        if(dist < best){ best=dist; idx=i; }
+      });
+      if(idx !== journeyIdx || force){
+        const isRealChange = idx !== journeyIdx && !force;
+        journeyIdx = idx;
+        journeyPhotoImgs.forEach(img=> img.classList.toggle('active', Number(img.dataset.idx)===idx));
+        journeyPhotos.classList.remove('bounce'); void journeyPhotos.offsetWidth; journeyPhotos.classList.add('bounce');
+        journeySteps.forEach((s,i)=> s.classList.toggle('active', i===idx));
+        if(isRealChange){
+          journeyBall.classList.remove('bounce'); void journeyBall.offsetWidth; journeyBall.classList.add('bounce');
+          journeyPaddle.classList.remove('hit'); void journeyPaddle.offsetWidth; journeyPaddle.classList.add('hit');
+        }
+      }
+    } else if(journeyIdx !== -1 && !pastBio){
+      journeyIdx = -1;
+      journeySteps.forEach((s,i)=> s.classList.toggle('active', i===0));
+    }
+  }
+
+  let journeyTicking = false;
+  document.addEventListener('scroll', ()=>{
+    if(journeyTicking) return; journeyTicking = true;
+    requestAnimationFrame(()=>{ updateFormationScroll(); updateJourney(false); journeyTicking = false; checkStepLockEngage(); });
+  }, {passive:true});
+
+  /* ---- Scroll-jack : verrouillage pas-à-pas sur les 4 expériences ---- */
+  let stepLocked = false;
+  let stepAnimating = false;
+  let stepIdx = 0;
+  const STEP_COOLDOWN = 650;
+  const expStepEls = Array.from(document.querySelectorAll('.exp-step'));
+
+  function getExpStepTargetY(i){
+    if(!expStepEls[i]) return null;
+    const centerY = window.innerHeight*0.42;
+    const r = expStepEls[i].getBoundingClientRect();
+    return window.scrollY + r.top + r.height/2 - centerY;
+  }
+  function animateStepScroll(targetY){
+    stepAnimating = true;
+    window.scrollTo({top: Math.max(0,targetY), behavior:'smooth'});
+    setTimeout(()=>{ stepAnimating = false; }, STEP_COOLDOWN);
+  }
+  function checkStepLockEngage(){
+    const bioBlock = document.getElementById('bioBlock');
+    if(!bioBlock || !expStepEls.length || stepAnimating) return;
+    if(!document.getElementById('view-about') || !document.getElementById('view-about').classList.contains('active')){ stepLocked=false; return; }
+    const centerY = window.innerHeight*0.42;
+    const bioRect = bioBlock.getBoundingClientRect();
+    const lastRect = expStepEls[expStepEls.length-1].getBoundingClientRect();
+    const exitDist = window.innerHeight*0.35;
+    const pOut = Math.max(0, Math.min(1, (centerY - lastRect.bottom)/exitDist));
+    const inside = bioRect.bottom < centerY && pOut < 1;
+    if(inside && !stepLocked){
+      stepLocked = true;
+      let idx=0, best=Infinity;
+      expStepEls.forEach((s,i)=>{
+        const r=s.getBoundingClientRect();
+        const dist=Math.abs((r.top+r.height/2)-centerY);
+        if(dist<best){best=dist; idx=i;}
+      });
+      stepIdx = idx;
+    } else if(!inside && stepLocked){
+      stepLocked = false;
+    }
+  }
+  function stepMove(dir){
+    if(stepAnimating) return;
+    if(dir>0 && stepIdx>=expStepEls.length-1){ stepLocked=false; return; }
+    if(dir<0 && stepIdx<=0){ stepLocked=false; return; }
+    stepIdx += dir;
+    const targetY = getExpStepTargetY(stepIdx);
+    if(targetY!=null) animateStepScroll(targetY);
+  }
+  window.addEventListener('wheel', function(e){
+    if(!stepLocked) return;
+    const dir = e.deltaY>0 ? 1 : (e.deltaY<0 ? -1 : 0);
+    if(dir===0){ e.preventDefault(); return; }
+    if(stepAnimating){ e.preventDefault(); return; }
+    if(dir>0 && stepIdx>=expStepEls.length-1){ stepLocked=false; return; }
+    if(dir<0 && stepIdx<=0){ stepLocked=false; return; }
+    e.preventDefault();
+    stepMove(dir);
+  }, {passive:false});
+  let touchStartY = null;
+  window.addEventListener('touchstart', function(e){
+    if(!stepLocked) return;
+    touchStartY = e.touches[0].clientY;
+  }, {passive:true});
+  window.addEventListener('touchmove', function(e){
+    if(!stepLocked || touchStartY===null) return;
+    const dy = touchStartY - e.touches[0].clientY;
+    if(Math.abs(dy) < 24){ e.preventDefault(); return; }
+    const dir = dy>0 ? 1 : -1;
+    if(stepAnimating){ e.preventDefault(); return; }
+    if(dir>0 && stepIdx>=expStepEls.length-1){ stepLocked=false; touchStartY=null; return; }
+    if(dir<0 && stepIdx<=0){ stepLocked=false; touchStartY=null; return; }
+    e.preventDefault();
+    stepMove(dir);
+    touchStartY = e.touches[0].clientY;
+  }, {passive:false});
+  window.addEventListener('touchend', function(){ touchStartY=null; });
+  window.addEventListener('keydown', function(e){
+    if(!stepLocked) return;
+    if(e.key==='ArrowDown'){ e.preventDefault(); stepMove(1); }
+    else if(e.key==='ArrowUp'){ e.preventDefault(); stepMove(-1); }
+  });
+
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+
+  const burgerBtn = document.getElementById('burgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  function closeMobileMenu(){
+    mobileMenu.classList.remove('open');
+    burgerBtn.setAttribute('aria-expanded','false');
+    burgerBtn.textContent = '☰';
+  }
+  burgerBtn.addEventListener('click', ()=>{
+    const isOpen = mobileMenu.classList.toggle('open');
+    burgerBtn.setAttribute('aria-expanded', String(isOpen));
+    burgerBtn.textContent = isOpen ? '✕' : '☰';
+  });
+  mobileMenu.querySelectorAll('[data-nav]').forEach(btn=> btn.addEventListener('click', closeMobileMenu));
+
+  wireImages(document);
+})();
+</script>
