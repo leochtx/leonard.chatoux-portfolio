@@ -323,8 +323,17 @@
   .chatax-hint span{font-family:var(--body);font-weight:700;font-style:italic;font-size:.92rem;color:var(--signal-bright);max-width:22ch;line-height:1.35;padding-bottom:6px;}
   @keyframes chataxHintWiggle{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-4px) rotate(-5deg);}}
   @media (prefers-reduced-motion:reduce){.chatax-hint svg{animation:none;}}
-  @media (max-width:1080px){.chatax-hint{display:none;}}
   @media (max-width:1080px){.chatax-grid{grid-template-columns:1fr;}}
+  @media (max-width:640px){.chatax-hint svg{width:34px;height:34px;}.chatax-hint span{font-size:.85rem;max-width:18ch;}}
+
+  .boumassa-section{padding-block:64px;}
+  .boumassa-grid{max-width:62ch;}
+  .boumassa-grid h2{margin-top:10px;}
+  .boumassa-grid p{color:var(--bone-dim);font-size:1.03rem;line-height:1.75;margin-top:18px;}
+  .boumassa-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:30px;}
+  .yt-sub-badge{display:inline-flex;align-items:center;gap:9px;color:var(--bone-dim);font-family:var(--body);font-size:.85rem;font-weight:600;border:1.5px solid var(--hairline-soft);padding:11px 20px;border-radius:999px;transition:border-color .25s ease,color .25s ease;}
+  .yt-sub-badge svg{width:19px;height:19px;flex:none;color:#FF0000;}
+  .yt-sub-badge:hover{border-color:var(--signal);color:var(--bone);}
   .cert-pill{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.03);backdrop-filter:blur(6px) saturate(130%);-webkit-backdrop-filter:blur(6px) saturate(130%);border:1.5px solid var(--hairline-soft);border-radius:999px;padding:8px 16px 8px 8px;cursor:pointer;transition:transform .3s cubic-bezier(.16,1,.3,1),border-color .35s ease,box-shadow .35s ease,backdrop-filter .35s ease;}
   .cert-pill:not(.no-img){border-color:var(--signal);}
   .cert-pill:not(.no-img):hover{transform:translateY(-4px);border-color:var(--signal-bright);backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);box-shadow:0 20px 40px -20px rgba(210,120,13,.5);}
@@ -706,6 +715,21 @@
     </div>
   </section>
 
+  <section class="wrap boumassa-section">
+    <div class="boumassa-grid reveal">
+      <p class="eyebrow">Projet vidéo</p>
+      <h2>Boumassa</h2>
+      <p>J'ai créé Boumassa avec des amis en août 2025. On y fait des vlogs autour du tennis de table — entraînements, tournois, coulisses — avec un ton direct, filmés et montés par nous-mêmes.</p>
+      <div class="boumassa-actions">
+        <a class="btn btn-solid" href="https://www.youtube.com/@BOUMASSA_Normandie" target="_blank" rel="noopener">Voir la chaîne YouTube</a>
+        <a class="yt-sub-badge" id="ytSubBadge" href="https://www.youtube.com/@BOUMASSA_Normandie" target="_blank" rel="noopener" aria-live="polite">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.6 3.5 12 3.5 12 3.5s-7.6 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.8.6 9.4.6 9.4.6s7.6 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5v-7l6.3 3.5-6.3 3.5Z"/></svg>
+          <span id="ytSubCount">Voir sur YouTube</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <footer class="site wrap"><div class="footer-row"><div class="footer-brand"><img src="img/logo-bone.png" alt="Logo Léonard Chatoux"><p>© 2026 Léonard Chatoux</p></div></div></footer>
 </main>
 
@@ -790,14 +814,14 @@
     'padel': {label:'Padel', mood:'padel', cover:'cover.jpg', files: range(21)},
   };
   /* ordre : comptes Chatax en premier, Padelshot ensuite, ALCL en dernier */
-  const VIDEO_FILES = ['006','008','007','010','001','002','003','004','005','009','011','012','013'];
+  const VIDEO_FILES = ['006','008','007','010','014','001','002','003','004','005','009','011','012','013'];
   const DOSSIERS = {
     'alcl-grand-quevilly': {label:'ALCL Grand Quevilly TT', cover:'cover.jpg', files: range(61)},
     'padelshot-barentin': {label:'Padelshot Rouen Barentin', cover:'cover.jpg', files: range(20)},
     'multiset-sport': {label:'Multiset Sport', cover:'cover.jpg', files: range(9)},
     'astt-lisieux': {label:'ASTT Lisieux', cover:'cover.jpg', files: range(41)},
-    'autres': {label:'Autres Projets', cover:'cover.jpg', files: range(20)},
-    'boumassa': {label:'Boumassa', cover:'cover.jpg', files: []},
+    'autres': {label:'Autres Projets', cover:'cover.jpg', files: range(3)},
+    'boumassa': {label:'Miniatures YouTube : BOUMASSA', cover:'cover.jpg', files: range(17)},
   };
   const COMM_TOP = {
     'visuels': {label:'Visuels', cover:'img/communication/visuels-cover.jpg'},
@@ -1026,6 +1050,24 @@
   document.addEventListener('keydown', (e)=>{
     if(videoModal.classList.contains('open') && e.key==='Escape') closeVideoModal();
   });
+
+  /* Compteur d'abonnés YouTube Boumassa — nécessite une clé API YouTube Data v3
+     (gratuite : console.cloud.google.com → activer "YouTube Data API v3" → Identifiants).
+     Tant qu'aucune clé n'est renseignée ci-dessous, le bouton affiche simplement "Voir sur YouTube". */
+  (function loadYoutubeSubs(){
+    const YT_API_KEY = '';
+    const YT_HANDLE = 'BOUMASSA_Normandie';
+    const countEl = document.getElementById('ytSubCount');
+    if(!countEl || !YT_API_KEY) return;
+    countEl.textContent = '…';
+    fetch(`https://www.googleapis.com/youtube/v3/channels?part=statistics&forHandle=${YT_HANDLE}&key=${YT_API_KEY}`)
+      .then(r=> r.json())
+      .then(data=>{
+        const count = data && data.items && data.items[0] && data.items[0].statistics && data.items[0].statistics.subscriberCount;
+        countEl.textContent = count ? `${Number(count).toLocaleString('fr-FR')} abonnés` : 'Voir sur YouTube';
+      })
+      .catch(()=>{ countEl.textContent = 'Voir sur YouTube'; });
+  })();
   let touchX=null;
   lb.addEventListener('touchstart', e=> touchX = e.changedTouches[0].clientX, {passive:true});
   lb.addEventListener('touchend', e=>{
