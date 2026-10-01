@@ -284,7 +284,7 @@
   }
   .cert-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px;}
 
-  .chatax-section{padding-block:64px 100px;background:linear-gradient(180deg,var(--void) 0%,var(--void) 70%,var(--signal-dim) 90%,var(--signal) 100%);}
+  .chatax-section{padding-block:64px 32px;}
   .chatax-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:center;}
   .chatax-photo{position:relative;border-radius:var(--r-lg) var(--r-lg) 50px var(--r-lg);overflow:hidden;aspect-ratio:3/4;box-shadow:0 30px 60px -30px rgba(0,0,0,.55);}
   .chatax-photo::after{content:"";position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:2;}
@@ -326,14 +326,17 @@
   @media (max-width:1080px){.chatax-grid{grid-template-columns:1fr;}}
   @media (max-width:640px){.chatax-hint svg{width:34px;height:34px;}.chatax-hint span{font-size:.85rem;max-width:18ch;}}
 
-  .boumassa-section{padding-block:64px;}
-  .boumassa-grid{max-width:62ch;}
-  .boumassa-grid h2{margin-top:10px;}
-  .boumassa-grid p{color:var(--bone-dim);font-size:1.03rem;line-height:1.75;margin-top:18px;}
-  .boumassa-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:30px;}
+  .boumassa-section{padding-block:64px 100px;background:linear-gradient(180deg,var(--void) 0%,var(--void) 70%,var(--signal-dim) 90%,var(--signal) 100%);}
+  .boumassa-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:center;}
+  .boumassa-photo{position:relative;border-radius:var(--r-lg) var(--r-lg) 50px var(--r-lg);overflow:hidden;aspect-ratio:4/3;box-shadow:0 30px 60px -30px rgba(0,0,0,.55);}
+  .boumassa-photo img{width:100%;height:100%;object-fit:cover;}
+  .boumassa-text p:not(.eyebrow){color:var(--bone-dim);font-size:1.02rem;line-height:1.8;max-width:58ch;}
+  .boumassa-text p+p{margin-top:18px;}
+  .boumassa-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:28px;}
   .yt-sub-badge{display:inline-flex;align-items:center;gap:9px;color:var(--bone-dim);font-family:var(--body);font-size:.85rem;font-weight:600;border:1.5px solid var(--hairline-soft);padding:11px 20px;border-radius:999px;transition:border-color .25s ease,color .25s ease;}
   .yt-sub-badge svg{width:19px;height:19px;flex:none;color:#FF0000;}
   .yt-sub-badge:hover{border-color:var(--signal);color:var(--bone);}
+  @media (max-width:1080px){.boumassa-grid{grid-template-columns:1fr;}}
   .cert-pill{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.03);backdrop-filter:blur(6px) saturate(130%);-webkit-backdrop-filter:blur(6px) saturate(130%);border:1.5px solid var(--hairline-soft);border-radius:999px;padding:8px 16px 8px 8px;cursor:pointer;transition:transform .3s cubic-bezier(.16,1,.3,1),border-color .35s ease,box-shadow .35s ease,backdrop-filter .35s ease;}
   .cert-pill:not(.no-img){border-color:var(--signal);}
   .cert-pill:not(.no-img):hover{transform:translateY(-4px);border-color:var(--signal-bright);backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);box-shadow:0 20px 40px -20px rgba(210,120,13,.5);}
@@ -716,16 +719,22 @@
   </section>
 
   <section class="wrap boumassa-section">
-    <div class="boumassa-grid reveal">
-      <p class="eyebrow">Projet vidéo</p>
-      <h2>Boumassa</h2>
-      <p>J'ai créé Boumassa avec des amis en août 2025. On y fait des vlogs autour du tennis de table — entraînements, tournois, coulisses — avec un ton direct, filmés et montés par nous-mêmes.</p>
-      <div class="boumassa-actions">
-        <a class="btn btn-solid" href="https://www.youtube.com/@BOUMASSA_Normandie" target="_blank" rel="noopener">Voir la chaîne YouTube</a>
-        <a class="yt-sub-badge" id="ytSubBadge" href="https://www.youtube.com/@BOUMASSA_Normandie" target="_blank" rel="noopener" aria-live="polite">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.6 3.5 12 3.5 12 3.5s-7.6 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.8.6 9.4.6 9.4.6s7.6 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5v-7l6.3 3.5-6.3 3.5Z"/></svg>
-          <span id="ytSubCount">Voir sur YouTube</span>
-        </a>
+    <div class="boumassa-grid">
+      <div class="boumassa-photo reveal">
+        <img src="img/boumassa/team.jpg" alt="L'équipe Boumassa, sponsorisée par Multiset Sport">
+      </div>
+      <div class="boumassa-text reveal">
+        <div class="chatax-brand"><img src="img/boumassa/logo.png" alt="Logo Boumassa" class="chatax-logo"><h2>Boumassa</h2></div>
+        <p class="eyebrow">Projet vidéo</p>
+        <p>J'ai créé Boumassa avec des amis en août 2025. On filme et on monte des vlogs de tournois de tennis de table — Wattignies, Nieppe, Lisieux, et même en Belgique à Wenduine ou Merelbeke — avec un ton direct, potache, jamais trop sérieux.</p>
+        <p>Entre les vlogs longs qui suivent un week-end de tournoi du début à la fin et les formats courts pour les Shorts, la chaîne compte aujourd'hui une quarantaine de vidéos et près de 600 abonnés. On est sponsorisés par Multiset Sport.</p>
+        <div class="boumassa-actions">
+          <a class="btn btn-solid" href="https://www.youtube.com/@BOUMASSA_Normandie" target="_blank" rel="noopener">Voir la chaîne YouTube</a>
+          <a class="yt-sub-badge" id="ytSubBadge" href="https://www.youtube.com/@BOUMASSA_Normandie" target="_blank" rel="noopener" aria-live="polite">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.6 3.5 12 3.5 12 3.5s-7.6 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.8.6 9.4.6 9.4.6s7.6 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5v-7l6.3 3.5-6.3 3.5Z"/></svg>
+            <span id="ytSubCount">Voir sur YouTube</span>
+          </a>
+        </div>
       </div>
     </div>
   </section>
