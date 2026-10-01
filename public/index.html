@@ -391,6 +391,16 @@
   #cvImg{opacity:1;background:#fff;min-height:0;border:none;padding:0;}
   .cv-modal-dl{font-family:var(--body);font-weight:600;font-size:.8rem;color:var(--ash);}
   .cv-modal-dl a{color:var(--signal-bright);}
+
+  .video-modal{position:fixed;inset:0;z-index:210;background:rgba(10,10,11,.97);display:none;align-items:center;justify-content:center;padding:5vh 4vw;backdrop-filter:blur(6px);}
+  .video-modal.open{display:flex;animation:lbIn .3s ease;}
+  .video-modal video{max-width:min(480px,90vw);max-height:88vh;width:100%;border-radius:var(--r-md);box-shadow:0 30px 80px -20px rgba(0,0,0,.7);background:#000;}
+  .video-item{position:relative;cursor:pointer;}
+  .video-poster{width:100%;display:block;}
+  .video-play-badge{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;}
+  .video-play-badge svg{position:relative;width:26px;height:26px;color:var(--void);margin-left:3px;}
+  .video-play-badge::before{content:"";position:absolute;width:58px;height:58px;border-radius:50%;background:rgba(243,237,227,.92);transition:transform .3s cubic-bezier(.16,1,.3,1),background .3s ease;}
+  .video-item:hover .video-play-badge::before{transform:scale(1.1);background:var(--signal-bright);}
   .lb-prev{left:24px;top:50%;transform:translateY(-50%);}
   .lb-next{right:24px;top:50%;transform:translateY(-50%);}
 
@@ -466,7 +476,7 @@
       <button data-nav="home" class="nav-tab nav-home" aria-label="Accueil"><img src="img/logo-bone.png" alt="" class="nav-home-icon"></button>
       <button data-nav="about" class="nav-tab">À propos</button>
       <button data-nav="photos" class="nav-tab">Photos</button>
-      <button data-nav="visuels" class="nav-tab">Visuels</button>
+      <button data-nav="visuels" class="nav-tab">Communication</button>
     </nav>
     <div style="display:flex;align-items:center;gap:10px;">
       <button class="header-cta" type="button" data-nav="home" data-anchor="contact">Me contacter</button>
@@ -477,7 +487,7 @@
     <button data-nav="home" class="mobile-nav-tab">Accueil</button>
     <button data-nav="about" class="mobile-nav-tab">À propos</button>
     <button data-nav="photos" class="mobile-nav-tab">Photos</button>
-    <button data-nav="visuels" class="mobile-nav-tab">Visuels</button>
+    <button data-nav="visuels" class="mobile-nav-tab">Communication</button>
   </nav>
 </header>
 
@@ -517,8 +527,8 @@
         <div class="gate-reveal"><h3>Photos</h3></div>
       </button>
       <button class="gate-card reveal" data-nav="visuels">
-        <img src="img/gates/visuels.jpg" alt="Visuels">
-        <div class="gate-reveal"><h3>Visuels</h3></div>
+        <img src="img/gates/visuels.jpg" alt="Communication">
+        <div class="gate-reveal"><h3>Communication</h3></div>
       </button>
     </div>
   </section>
@@ -716,11 +726,11 @@
 <main id="view-visuels" class="view">
   <div class="wrap hub-head">
     <button class="back-arrow" data-nav="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>Accueil</button>
-    <p class="eyebrow">Visuels</p><h1>Création de contenu</h1>
+    <p class="eyebrow">Communication</p><h1>Création de contenu</h1>
   </div>
   <div class="wrap" id="visuels-covers"><div class="folder-grid" id="visuelsFolderGrid"></div></div>
   <div class="wrap" id="visuels-open" style="display:none;">
-    <div class="breadcrumb"><button class="back-arrow" data-back="visuels"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>Visuels</button><span>/</span><span id="visuelsOpenLabel"></span></div>
+    <div class="breadcrumb"><button class="back-arrow" data-back="visuels"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>Communication</button><span>/</span><span id="visuelsOpenLabel"></span></div>
     <div class="masonry" id="visuelsMasonry"></div>
   </div>
   <footer class="site wrap"><div class="footer-row"><div class="footer-brand"><img src="img/logo-bone.png" alt="Logo Léonard Chatoux"><p>© 2026 Léonard Chatoux</p></div></div></footer>
@@ -748,6 +758,11 @@
   </div>
 </div>
 
+<div class="video-modal" id="videoModal" role="dialog" aria-modal="true" aria-label="Lecteur vidéo">
+  <button class="lb-close" id="videoClose" aria-label="Fermer">✕</button>
+  <video id="videoModalPlayer" controls playsinline></video>
+</div>
+
 <script>
 (function(){
   "use strict";
@@ -769,12 +784,26 @@
     'braderie-lille-2026': {label:'Braderie de Lille 2026', mood:'braderie', cover:'cover.jpg', files: range(98)},
     'padel': {label:'Padel', mood:'padel', cover:'cover.jpg', files: range(21)},
   };
+  const VIDEO_FILES = ['001','002','003','004','005','006','007','008','009','010','011','012','013'];
   const DOSSIERS = {
-    'alcl-grand-quevilly': {label:'ALCL Grand Quevilly TT', cover:'cover.jpg', files: range(61)},
-    'padelshot-barentin': {label:'Padelshot Barentin', cover:'cover.jpg', files: range(20)},
-    'multiset-sport': {label:'Multiset Sport', cover:'cover.jpg', files: range(9)},
-    'astt-lisieux': {label:'ASTT Lisieux', cover:'cover.jpg', files: range(41)},
-    'autres': {label:'Projets Libres', cover:'cover.jpg', files: range(20)},
+    'visuels': {
+      label: 'Visuels',
+      type: 'images',
+      cover: 'img/visuels/alcl-grand-quevilly/cover.jpg',
+      items: [
+        {key:'alcl-grand-quevilly', files: range(61)},
+        {key:'padelshot-barentin', files: range(20)},
+        {key:'multiset-sport', files: range(9)},
+        {key:'astt-lisieux', files: range(41)},
+        {key:'autres', files: range(20)},
+      ].flatMap(s => s.files.map(fn => `img/visuels/${s.key}/${fn}`)),
+    },
+    'videos': {
+      label: 'Vidéos',
+      type: 'videos',
+      cover: `videos/communication/${VIDEO_FILES[0]}-poster.jpg`,
+      items: VIDEO_FILES.map(fn => ({src:`videos/communication/${fn}.mp4`, poster:`videos/communication/${fn}-poster.jpg`})),
+    },
   };
 
   const views = {home:'view-home', about:'view-about', photos:'view-photos', visuels:'view-visuels'};
@@ -802,11 +831,20 @@
     document.getElementById('visuels-open').style.display='block';
     document.getElementById('visuelsOpenLabel').textContent = d.label;
     const m = document.getElementById('visuelsMasonry');
-    m.innerHTML = d.files.map((fn,i)=>`
-      <div class="g-item" data-mood="visuel" data-index="${i}" style="animation-delay:${(i%8)*0.05}s">
-        <img loading="lazy" src="img/visuels/${key}/${fn}" alt="${d.label} ${i+1}">
-      </div>`).join('');
-    m.querySelectorAll('.g-item').forEach(el=> el.addEventListener('click', ()=> openLightbox('visuels', key, Number(el.dataset.index))));
+    if(d.type==='videos'){
+      m.innerHTML = d.items.map((it,i)=>`
+        <div class="g-item video-item" data-index="${i}" style="animation-delay:${(i%8)*0.05}s">
+          <img loading="lazy" class="video-poster" src="${it.poster}" alt="${d.label} ${i+1}">
+          <div class="video-play-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>`).join('');
+      m.querySelectorAll('.g-item').forEach(el=> el.addEventListener('click', ()=> openVideoModal(d.items[Number(el.dataset.index)].src)));
+    } else {
+      m.innerHTML = d.items.map((src,i)=>`
+        <div class="g-item" data-mood="visuel" data-index="${i}" style="animation-delay:${(i%8)*0.05}s">
+          <img loading="lazy" src="${src}" alt="${d.label} ${i+1}">
+        </div>`).join('');
+      m.querySelectorAll('.g-item').forEach(el=> el.addEventListener('click', ()=> openLightbox('visuels', key, Number(el.dataset.index))));
+    }
     wireImages(m);
   }
   function hideDossier(){
@@ -868,7 +906,7 @@
   Object.entries(DOSSIERS).forEach(([key,d])=>{
     const div = document.createElement('div');
     div.className = 'folder-card';
-    div.innerHTML = `<img src="img/visuels/${key}/${d.cover}" alt="${d.label}" loading="lazy"><div class="folder-reveal"><h3>${d.label}</h3></div>`;
+    div.innerHTML = `<img src="${d.cover}" alt="${d.label}" loading="lazy"><div class="folder-reveal"><h3>${d.label}</h3></div>`;
     div.addEventListener('click', ()=> goTo('visuels', {open:key}));
     visuelsFolderGrid.appendChild(div);
   });
@@ -882,7 +920,7 @@
   let lbCtx = null;
   function lbData(){
     if(lbCtx.kind==='photos'){ const a=ALBUMS[lbCtx.key]; return {label:a.label, files:a.files, base:`img/photos/${lbCtx.key}/`}; }
-    const d=DOSSIERS[lbCtx.key]; return {label:d.label, files:d.files, base:`img/visuels/${lbCtx.key}/`};
+    const d=DOSSIERS[lbCtx.key]; return {label:d.label, files:d.items, base:''};
   }
   function openLightbox(kind, key, index){
     lbCtx = {kind, key, index};
@@ -930,6 +968,27 @@
   cvModal.addEventListener('click', (e)=>{ if(e.target===cvModal) closeCv(); });
   document.addEventListener('keydown', (e)=>{
     if(cvModal.classList.contains('open') && e.key==='Escape') closeCv();
+  });
+
+  const videoModal = document.getElementById('videoModal');
+  const videoModalPlayer = document.getElementById('videoModalPlayer');
+  function openVideoModal(src){
+    videoModalPlayer.setAttribute('src', src);
+    videoModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    videoModalPlayer.play().catch(()=>{});
+  }
+  function closeVideoModal(){
+    videoModal.classList.remove('open');
+    document.body.style.overflow = '';
+    videoModalPlayer.pause();
+    videoModalPlayer.removeAttribute('src');
+    videoModalPlayer.load();
+  }
+  document.getElementById('videoClose').addEventListener('click', closeVideoModal);
+  videoModal.addEventListener('click', (e)=>{ if(e.target===videoModal) closeVideoModal(); });
+  document.addEventListener('keydown', (e)=>{
+    if(videoModal.classList.contains('open') && e.key==='Escape') closeVideoModal();
   });
   let touchX=null;
   lb.addEventListener('touchstart', e=> touchX = e.changedTouches[0].clientX, {passive:true});
