@@ -410,7 +410,8 @@
   .video-modal.open{display:flex;animation:lbIn .3s ease;}
   .video-modal video{max-width:min(480px,90vw);max-height:88vh;width:100%;border-radius:var(--r-md);box-shadow:0 30px 80px -20px rgba(0,0,0,.7);background:#000;}
   .video-item{position:relative;cursor:pointer;}
-  .video-poster{width:100%;display:block;}
+  .video-poster{width:100%;display:block;transition:transform .55s cubic-bezier(.16,1,.3,1),filter .55s ease;}
+  .video-item:hover .video-poster{transform:scale(1.07);filter:blur(3px) brightness(.5);}
   .video-play-badge{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;}
   .video-play-badge svg{position:relative;width:26px;height:26px;color:var(--void);margin-left:3px;}
   .video-play-badge::before{content:"";position:absolute;width:58px;height:58px;border-radius:50%;background:rgba(243,237,227,.92);transition:transform .3s cubic-bezier(.16,1,.3,1),background .3s ease;}
