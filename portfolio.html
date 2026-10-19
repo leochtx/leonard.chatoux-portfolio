@@ -820,10 +820,10 @@
 
   /* tri chronologique strict : plus récent en haut */
   const ALBUMS = {
-    'tennis-de-table': {label:'Tennis de Table', mood:'tt', cover:'cover.jpg', files: range(103)},
-    'braderie-lille-2026': {label:'Braderie de Lille 2026', mood:'braderie', cover:'cover.jpg', files: range(98)},
-    'padel': {label:'Padel', mood:'padel', cover:'cover.jpg', files: range(21)},
-    'manifestations': {label:'Manifestations', mood:'manif', cover:'cover.jpg', files: range(68)},
+    'tennis-de-table': {label:'Tennis de Table', latest:'2026-09-22', mood:'tt', cover:'cover.jpg', files: range(103)},
+    'braderie-lille-2026': {label:'Braderie de Lille 2026', latest:'2026-09-06', mood:'braderie', cover:'cover.jpg', files: range(98)},
+    'padel': {label:'Padel', latest:'2026-04-29', mood:'padel', cover:'cover.jpg', files: range(21)},
+    'manifestations': {label:'Manifestations', latest:'2026-10-17', mood:'manif', cover:'cover.jpg', files: range(68)},
   };
   /* ordre : comptes Chatax en premier, Padelshot ensuite, ALCL en dernier */
   const VIDEO_FILES = ['006','008','007','010','014','001','002','003','004','005','009','011','012','013'];
@@ -949,7 +949,8 @@
   });
 
   const photosFolderGrid = document.getElementById('photosFolderGrid');
-  Object.entries(ALBUMS).forEach(([key,a])=>{
+  /* albums classés par date de leur dernière photo (la plus récente en premier) */
+  Object.entries(ALBUMS).sort((x,y)=> y[1].latest.localeCompare(x[1].latest)).forEach(([key,a])=>{
     const div = document.createElement('div');
     div.className = 'folder-card';
     div.innerHTML = `<img src="img/photos/${key}/${a.cover}" alt="${a.label}" loading="lazy"><div class="folder-reveal"><h3>${a.label}</h3></div>`;
